@@ -1,0 +1,32 @@
+{
+  "name": "go-dokumentasi-indonesia",
+  "displayName": "Go Dokumentasi Indonesia",
+  "description": "hover-popup dokumentasi go dalam bahasa indonesia",
+  "version": "0.1.0",
+  "publisher": "udenbaguse",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udenbaguse/go-dokumentasi-indonesia.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:go"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {},
+  "scripts": {
+    "check": "node --check src/extension.js && node --check src/hoverProvider.js && node --check src/docsLoader.js",
+    "test": "npm run check",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.6.0"
+  }
+}
