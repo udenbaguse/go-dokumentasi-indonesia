@@ -1,0 +1,104 @@
+{
+  "append": {
+    "title": "append",
+    "description": "Menambahkan elemen ke slice dan mengembalikan slice baru. Simpan hasilnya karena backing array bisa berubah.",
+    "syntax": "append(slice, nilai...)",
+    "example": "nums := []int{1, 2}\nnums = append(nums, 3, 4)"
+  },
+  "len": {
+    "title": "len",
+    "description": "Mengambil panjang string, array, slice, map, atau jumlah elemen yang menunggu di channel buffer.",
+    "syntax": "len(v)",
+    "example": "fmt.Println(len(\"go\"))\nfmt.Println(len([]int{1, 2, 3}))"
+  },
+  "cap": {
+    "title": "cap",
+    "description": "Mengambil kapasitas array, slice, atau channel. Untuk slice, kapasitas adalah ruang dari indeks awal slice sampai akhir backing array.",
+    "syntax": "cap(v)",
+    "example": "s := make([]int, 0, 10)\nfmt.Println(cap(s))"
+  },
+  "copy": {
+    "title": "copy",
+    "description": "Menyalin elemen dari slice sumber ke slice tujuan dan mengembalikan jumlah elemen yang disalin.",
+    "syntax": "copy(dst, src)",
+    "example": "dst := make([]int, len(src))\nn := copy(dst, src)"
+  },
+  "delete": {
+    "title": "delete",
+    "description": "Menghapus key dari map. Aman dipanggil meskipun key tidak ada.",
+    "syntax": "delete(map, key)",
+    "example": "delete(users, \"andi\")"
+  },
+  "clear": {
+    "title": "clear",
+    "description": "Built-in Go 1.21+ untuk mengosongkan map atau meng-zero-kan semua elemen slice.",
+    "syntax": "clear(v)",
+    "example": "clear(cache)\nclear(buffer)"
+  },
+  "close": {
+    "title": "close",
+    "description": "Menutup channel untuk memberi sinyal bahwa tidak ada nilai lagi yang akan dikirim.",
+    "syntax": "close(ch)",
+    "example": "close(done)\nfor v := range ch {\n  fmt.Println(v)\n}"
+  },
+  "new": {
+    "title": "new",
+    "description": "Mengalokasikan nilai dan mengembalikan pointer. Sejak Go 1.26, operand new bisa berupa ekspresi untuk memberi nilai awal.",
+    "syntax": "new(Tipe) atau new(ekspresi)",
+    "example": "p := new(int)\n\nage := new(int64(30)) // Go 1.26+"
+  },
+  "panic": {
+    "title": "panic",
+    "description": "Menghentikan alur normal fungsi dan mulai unwinding stack. Gunakan untuk kondisi yang benar-benar tidak bisa dipulihkan.",
+    "syntax": "panic(nilai)",
+    "example": "if config == nil {\n  panic(\"config wajib ada\")\n}"
+  },
+  "recover": {
+    "title": "recover",
+    "description": "Mengambil nilai panic dan menghentikan unwinding jika dipanggil dari fungsi yang di-defer.",
+    "syntax": "recover()",
+    "example": "defer func() {\n  if r := recover(); r != nil {\n    fmt.Println(\"pulih:\", r)\n  }\n}()"
+  },
+  "min": {
+    "title": "min",
+    "description": "Built-in Go 1.21+ yang mengembalikan nilai terkecil dari argumen ordered.",
+    "syntax": "min(a, b, ...)",
+    "example": "terkecil := min(4, 2, 9)"
+  },
+  "max": {
+    "title": "max",
+    "description": "Built-in Go 1.21+ yang mengembalikan nilai terbesar dari argumen ordered.",
+    "syntax": "max(a, b, ...)",
+    "example": "terbesar := max(4, 2, 9)"
+  },
+  "complex": {
+    "title": "complex",
+    "description": "Membuat bilangan kompleks dari bagian real dan imajiner.",
+    "syntax": "complex(real, imag)",
+    "example": "z := complex(2.0, 3.0)"
+  },
+  "real": {
+    "title": "real",
+    "description": "Mengambil bagian real dari bilangan kompleks.",
+    "syntax": "real(z)",
+    "example": "fmt.Println(real(2 + 3i))"
+  },
+  "imag": {
+    "title": "imag",
+    "description": "Mengambil bagian imajiner dari bilangan kompleks.",
+    "syntax": "imag(z)",
+    "example": "fmt.Println(imag(2 + 3i))"
+  },
+  "print": {
+    "title": "print",
+    "description": "Built-in debug sederhana. Tidak dijamin stabil untuk formatting; gunakan fmt.Print untuk program normal.",
+    "syntax": "print(args...)",
+    "example": "print(\"debug\", n)"
+  },
+  "println": {
+    "title": "println",
+    "description": "Built-in debug sederhana yang menambah newline. Untuk output aplikasi, gunakan fmt.Println.",
+    "syntax": "println(args...)",
+    "example": "println(\"debug\", n)"
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "slices": {
+    "title": "slices",
+    "description": "Paket standar Go 1.21+ berisi helper generic untuk slice, seperti Sort, Contains, Delete, Clone, dan iterator helper.",
+    "syntax": "import \"slices\"",
+    "example": "nums := []int{3, 1, 2}\nslices.Sort(nums)\nfmt.Println(slices.Contains(nums, 2))"
+  },
+  "maps": {
+    "title": "maps",
+    "description": "Paket standar Go 1.21+ berisi helper generic untuk map, seperti Clone, Copy, Equal, Keys, Values, Insert, dan Collect.",
+    "syntax": "import \"maps\"",
+    "example": "copy := maps.Clone(original)\nkeys := slices.Collect(maps.Keys(copy))"
+  },
+  "cmp": {
+    "title": "cmp",
+    "description": "Paket standar Go 1.21+ untuk operasi perbandingan generic pada ordered values.",
+    "syntax": "import \"cmp\"",
+    "example": "fmt.Println(cmp.Compare(10, 20))\nfmt.Println(cmp.Less(\"a\", \"b\"))"
+  },
+  "iter": {
+    "title": "iter",
+    "description": "Paket standar Go 1.23+ yang mendefinisikan tipe iterator Seq dan Seq2 untuk range-over-function.",
+    "syntax": "import \"iter\"",
+    "example": "func Count(n int) iter.Seq[int] {\n  return func(yield func(int) bool) {\n    for i := range n {\n      if !yield(i) {\n        return\n      }\n    }\n  }\n}"
+  },
+  "Seq": {
+    "title": "iter.Seq",
+    "description": "Iterator satu nilai dari paket iter. Bisa langsung dipakai dalam for range sejak Go 1.23.",
+    "syntax": "type Seq[V any] func(yield func(V) bool)",
+    "example": "for v := range slices.Values([]int{1, 2, 3}) {\n  fmt.Println(v)\n}"
+  },
+  "Seq2": {
+    "title": "iter.Seq2",
+    "description": "Iterator dua nilai dari paket iter, umum dipakai untuk pasangan index-value atau key-value.",
+    "syntax": "type Seq2[K, V any] func(yield func(K, V) bool)",
+    "example": "for k, v := range maps.All(m) {\n  fmt.Println(k, v)\n}"
+  },
+  "unique": {
+    "title": "unique",
+    "description": "Paket standar Go 1.23+ untuk canonicalizing nilai comparable agar nilai sama berbagi handle yang sama.",
+    "syntax": "import \"unique\"",
+    "example": "h1 := unique.Make(\"go\")\nh2 := unique.Make(\"go\")\nfmt.Println(h1 == h2)"
+  },
+  "structs": {
+    "title": "structs",
+    "description": "Paket standar Go 1.23+ untuk marker layout struct. Saat ini menyediakan HostLayout untuk interop dengan host API.",
+    "syntax": "import \"structs\"",
+    "example": "type Header struct {\n  _ structs.HostLayout\n  Size uint32\n}"
+  },
+  "slog": {
+    "title": "log/slog",
+    "description": "Paket structured logging standar Go 1.21+ dengan level, handler, attribute, dan output key-value.",
+    "syntax": "import \"log/slog\"",
+    "example": "slog.Info(\"login\", \"user\", userID, \"ok\", true)"
+  },
+  "slogtest": {
+    "title": "testing/slogtest",
+    "description": "Paket Go 1.21+ untuk menguji implementasi slog.Handler agar sesuai kontrak slog.",
+    "syntax": "import \"testing/slogtest\"",
+    "example": "err := slogtest.TestHandler(handler, func() []map[string]any {\n  return results\n})"
+  },
+  "rand": {
+    "title": "math/rand/v2",
+    "description": "Paket random generasi kedua di standard library Go 1.22+ dengan API yang lebih bersih dan global generator yang terseed acak.",
+    "syntax": "import rand \"math/rand/v2\"",
+    "example": "n := rand.IntN(10)\nr := rand.New(rand.NewPCG(1, 2))"
+  },
+  "TypeFor": {
+    "title": "reflect.TypeFor",
+    "description": "Fungsi Go 1.22+ untuk mendapatkan reflect.Type dari type argument tanpa trik pointer nil.",
+    "syntax": "reflect.TypeFor[T]()",
+    "example": "t := reflect.TypeFor[map[string]int]()\nfmt.Println(t.Kind())"
+  },
+  "OpenRoot": {
+    "title": "os.OpenRoot",
+    "description": "Fungsi Go 1.24+ untuk membuka root direktori terbatas. Operasi lewat os.Root tidak boleh keluar dari root tersebut.",
+    "syntax": "os.OpenRoot(path)",
+    "example": "root, err := os.OpenRoot(\"uploads\")\nif err != nil {\n  return err\n}\ndefer root.Close()\nfile, err := root.Open(\"avatar.png\")"
+  },
+  "Root": {
+    "title": "os.Root",
+    "description": "Tipe Go 1.24+ untuk akses filesystem yang dibatasi ke satu direktori root, membantu mencegah path traversal.",
+    "syntax": "type Root struct",
+    "example": "root, _ := os.OpenRoot(\"data\")\ninfo, err := root.Stat(\"report.txt\")"
+  },
+  "synctest": {
+    "title": "testing/synctest",
+    "description": "Paket Go 1.25+ untuk menguji kode concurrent dalam bubble dengan waktu virtual dan sinkronisasi yang deterministik.",
+    "syntax": "import \"testing/synctest\"",
+    "example": "synctest.Test(t, func(t *testing.T) {\n  go worker()\n  synctest.Wait()\n})"
+  },
+  "jsonv2": {
+    "title": "encoding/json/v2",
+    "description": "Implementasi JSON eksperimental Go 1.25+ yang aktif dengan GOEXPERIMENT=jsonv2.",
+    "syntax": "GOEXPERIMENT=jsonv2",
+    "example": "import json \"encoding/json/v2\"\n\nb, err := json.Marshal(value)"
+  },
+  "CrossOriginProtection": {
+    "title": "net/http.CrossOriginProtection",
+    "description": "Proteksi CSRF standar Go 1.25+ berbasis Fetch metadata untuk menolak request browser cross-origin yang tidak aman.",
+    "syntax": "http.NewCrossOriginProtection()",
+    "example": "cop := http.NewCrossOriginProtection()\nhandler := cop.Handler(mux)\nhttp.ListenAndServe(\":8080\", handler)"
+  },
+  "Loop": {
+    "title": "testing.B.Loop",
+    "description": "Method benchmark Go 1.24+ untuk menjalankan body benchmark. Lebih aman dari loop manual memakai b.N.",
+    "syntax": "for b.Loop() { ... }",
+    "example": "func BenchmarkHash(b *testing.B) {\n  for b.Loop() {\n    hash(data)\n  }\n}"
+  },
+  "Attr": {
+    "title": "testing.Attr",
+    "description": "Method Go 1.25+ pada T, B, dan F untuk menulis atribut key-value ke log test.",
+    "syntax": "t.Attr(key, value)",
+    "example": "func TestAPI(t *testing.T) {\n  t.Attr(\"component\", \"api\")\n}"
+  },
+  "Output": {
+    "title": "testing.Output",
+    "description": "Method Go 1.25+ pada T, B, dan F yang mengembalikan io.Writer untuk output test yang rapi seperti log test.",
+    "syntax": "t.Output()",
+    "example": "fmt.Fprintln(t.Output(), \"detail debug\")"
+  },
+  "hpke": {
+    "title": "crypto/hpke",
+    "description": "Paket Go 1.26+ untuk Hybrid Public Key Encryption (HPKE) sesuai RFC 9180, termasuk dukungan KEM hybrid post-quantum.",
+    "syntax": "import \"crypto/hpke\"",
+    "example": "// Gunakan crypto/hpke untuk skema encrypt-to-public-key modern.\n// Detail API mengikuti suite HPKE yang dipilih."
+  },
+  "archsimd": {
+    "title": "simd/archsimd",
+    "description": "Paket eksperimental Go 1.26+ untuk operasi SIMD spesifik arsitektur. Aktif dengan GOEXPERIMENT=simd.",
+    "syntax": "GOEXPERIMENT=simd",
+    "example": "import \"simd/archsimd\"\n\n// API masih eksperimental dan tidak portable lintas arsitektur."
+  },
+  "secret": {
+    "title": "runtime/secret",
+    "description": "Paket eksperimental Go 1.26+ untuk membantu menghapus temporary secret dari register, stack, dan heap allocation.",
+    "syntax": "GOEXPERIMENT=runtimesecret",
+    "example": "import \"runtime/secret\"\n\n// Gunakan pada kode kriptografi yang memerlukan forward secrecy."
+  },
+  "AsType": {
+    "title": "errors.AsType",
+    "description": "Fungsi generic Go 1.26+ yang menjadi versi type-safe dari errors.As.",
+    "syntax": "errors.AsType[T](err)",
+    "example": "pathErr, ok := errors.AsType[*fs.PathError](err)\nif ok {\n  fmt.Println(pathErr.Path)\n}"
+  },
+  "ArtifactDir": {
+    "title": "testing.ArtifactDir",
+    "description": "Method Go 1.26+ pada T, B, dan F untuk mendapatkan direktori penulisan artifact test.",
+    "syntax": "t.ArtifactDir()",
+    "example": "dir := t.ArtifactDir()\nos.WriteFile(filepath.Join(dir, \"out.txt\"), data, 0644)"
+  },
+  "cryptotest": {
+    "title": "testing/cryptotest",
+    "description": "Paket Go 1.26+ untuk mengatur randomness kriptografi deterministik selama test.",
+    "syntax": "import \"testing/cryptotest\"",
+    "example": "cryptotest.SetGlobalRandom(t, 12345)"
+  },
+  "SetGlobalRandom": {
+    "title": "testing/cryptotest.SetGlobalRandom",
+    "description": "Fungsi Go 1.26+ yang mengganti sumber random crypto global selama durasi test.",
+    "syntax": "cryptotest.SetGlobalRandom(t, seed)",
+    "example": "cryptotest.SetGlobalRandom(t, 12345)"
+  },
+  "slices.Sort": {
+    "title": "slices.Sort",
+    "description": "Mengurutkan slice ordered secara ascending.",
+    "syntax": "slices.Sort[S ~[]E, E cmp.Ordered](x S)",
+    "example": "nums := []int{3, 1, 2}\nslices.Sort(nums)"
+  },
+  "slices.Contains": {
+    "title": "slices.Contains",
+    "description": "Mengecek apakah slice mengandung nilai tertentu.",
+    "syntax": "slices.Contains(s, v) bool",
+    "example": "if slices.Contains(roles, \"admin\") {\n  allow()\n}"
+  },
+  "slices.Clone": {
+    "title": "slices.Clone",
+    "description": "Membuat salinan slice baru dengan elemen yang sama.",
+    "syntax": "slices.Clone(s)",
+    "example": "copy := slices.Clone(items)"
+  },
+  "slices.Delete": {
+    "title": "slices.Delete",
+    "description": "Menghapus rentang elemen dari slice dan mengembalikan slice hasil.",
+    "syntax": "slices.Delete(s, i, j)",
+    "example": "items = slices.Delete(items, 2, 4)"
+  },
+  "slices.Values": {
+    "title": "slices.Values",
+    "description": "Mengembalikan iterator nilai slice untuk dipakai dengan range-over-function.",
+    "syntax": "slices.Values(s)",
+    "example": "for v := range slices.Values(items) {\n  fmt.Println(v)\n}"
+  },
+  "slices.Collect": {
+    "title": "slices.Collect",
+    "description": "Mengumpulkan nilai dari iterator menjadi slice baru.",
+    "syntax": "slices.Collect(seq)",
+    "example": "keys := slices.Collect(maps.Keys(m))"
+  },
+  "maps.Clone": {
+    "title": "maps.Clone",
+    "description": "Membuat salinan map baru dengan key-value yang sama.",
+    "syntax": "maps.Clone(m)",
+    "example": "copy := maps.Clone(settings)"
+  },
+  "maps.Copy": {
+    "title": "maps.Copy",
+    "description": "Menyalin semua key-value dari map sumber ke map tujuan.",
+    "syntax": "maps.Copy(dst, src)",
+    "example": "maps.Copy(defaults, overrides)"
+  },
+  "maps.Keys": {
+    "title": "maps.Keys",
+    "description": "Mengembalikan iterator key dari map.",
+    "syntax": "maps.Keys(m)",
+    "example": "keys := slices.Collect(maps.Keys(users))"
+  },
+  "maps.Values": {
+    "title": "maps.Values",
+    "description": "Mengembalikan iterator value dari map.",
+    "syntax": "maps.Values(m)",
+    "example": "values := slices.Collect(maps.Values(scores))"
+  },
+  "maps.Equal": {
+    "title": "maps.Equal",
+    "description": "Membandingkan dua map dengan key-value comparable.",
+    "syntax": "maps.Equal(m1, m2) bool",
+    "example": "if maps.Equal(want, got) {\n  t.Log(\"ok\")\n}"
+  },
+  "cmp.Compare": {
+    "title": "cmp.Compare",
+    "description": "Membandingkan dua ordered values dan mengembalikan -1, 0, atau 1.",
+    "syntax": "cmp.Compare(x, y)",
+    "example": "result := cmp.Compare(a, b)"
+  },
+  "cmp.Less": {
+    "title": "cmp.Less",
+    "description": "Melaporkan apakah x lebih kecil dari y untuk ordered values.",
+    "syntax": "cmp.Less(x, y) bool",
+    "example": "slices.SortFunc(users, func(a, b User) int {\n  return cmp.Compare(a.Name, b.Name)\n})"
+  },
+  "cmp.Or": {
+    "title": "cmp.Or",
+    "description": "Mengembalikan argumen pertama yang bukan zero value. Berguna untuk default value sederhana.",
+    "syntax": "cmp.Or(vals ...T) T",
+    "example": "port := cmp.Or(os.Getenv(\"PORT\"), \"8080\")"
+  },
+  "iter.Pull": {
+    "title": "iter.Pull",
+    "description": "Mengubah iterator push-style menjadi fungsi pull-style next/stop.",
+    "syntax": "iter.Pull(seq)",
+    "example": "next, stop := iter.Pull(seq)\ndefer stop()\nfor v, ok := next(); ok; v, ok = next() {\n  fmt.Println(v)\n}"
+  },
+  "unique.Make": {
+    "title": "unique.Make",
+    "description": "Membuat handle canonical untuk nilai comparable.",
+    "syntax": "unique.Make[T comparable](value T) unique.Handle[T]",
+    "example": "h := unique.Make(\"customer:42\")"
+  },
+  "slog.Info": {
+    "title": "slog.Info",
+    "description": "Menulis log level info dengan pesan dan pasangan key-value.",
+    "syntax": "slog.Info(msg string, args ...any)",
+    "example": "slog.Info(\"request\", \"method\", r.Method, \"path\", r.URL.Path)"
+  },
+  "slog.Error": {
+    "title": "slog.Error",
+    "description": "Menulis log level error dengan pesan, error, dan attribute lain.",
+    "syntax": "slog.Error(msg string, args ...any)",
+    "example": "slog.Error(\"save failed\", \"err\", err)"
+  },
+  "slog.New": {
+    "title": "slog.New",
+    "description": "Membuat logger baru dari handler.",
+    "syntax": "slog.New(handler slog.Handler) *slog.Logger",
+    "example": "logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))"
+  },
+  "slog.NewJSONHandler": {
+    "title": "slog.NewJSONHandler",
+    "description": "Membuat handler slog yang menulis log sebagai JSON.",
+    "syntax": "slog.NewJSONHandler(w io.Writer, opts *slog.HandlerOptions)",
+    "example": "logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))"
+  },
+  "slog.NewTextHandler": {
+    "title": "slog.NewTextHandler",
+    "description": "Membuat handler slog yang menulis log sebagai teks key=value.",
+    "syntax": "slog.NewTextHandler(w io.Writer, opts *slog.HandlerOptions)",
+    "example": "logger := slog.New(slog.NewTextHandler(os.Stdout, nil))"
+  },
+  "synctest.Test": {
+    "title": "synctest.Test",
+    "description": "Menjalankan test concurrent dalam bubble terisolasi dengan waktu virtual.",
+    "syntax": "synctest.Test(t, func(t *testing.T) { ... })",
+    "example": "synctest.Test(t, func(t *testing.T) {\n  go worker()\n  synctest.Wait()\n})"
+  },
+  "synctest.Wait": {
+    "title": "synctest.Wait",
+    "description": "Menunggu sampai goroutine lain dalam bubble synctest durably blocked.",
+    "syntax": "synctest.Wait()",
+    "example": "synctest.Wait()"
+  },
+  "errors.AsType": {
+    "title": "errors.AsType",
+    "description": "Versi generic dan type-safe dari errors.As di Go 1.26+.",
+    "syntax": "errors.AsType[E error](err error) (E, bool)",
+    "example": "pathErr, ok := errors.AsType[*fs.PathError](err)"
+  },
+  "testing.ArtifactDir": {
+    "title": "testing.ArtifactDir",
+    "description": "Method Go 1.26+ pada T, B, dan F untuk mendapatkan direktori output artifact test.",
+    "syntax": "t.ArtifactDir() string",
+    "example": "dir := t.ArtifactDir()"
+  },
+  "testing.B.Loop": {
+    "title": "testing.B.Loop",
+    "description": "Loop benchmark Go 1.24+ yang menggantikan pola manual for i := 0; i < b.N; i++.",
+    "syntax": "for b.Loop() { ... }",
+    "example": "for b.Loop() {\n  hash(data)\n}"
+  }
+}

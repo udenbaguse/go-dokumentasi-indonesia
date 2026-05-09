@@ -2,6 +2,7 @@
   "name": "go-dokumentasi-indonesia",
   "displayName": "Go Dokumentasi Indonesia",
   "description": "hover-popup dokumentasi go dalam bahasa indonesia",
+  "icon": "icon.png",
   "version": "0.1.0",
   "publisher": "udenbaguse",
   "license": "MIT",
@@ -13,7 +14,7 @@
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages", "Education"
   ],
   "activationEvents": [
     "onLanguage:go"

@@ -1,0 +1,38 @@
+{
+  "generic": {
+    "title": "generic",
+    "description": "Fitur Go 1.18+ untuk menulis fungsi atau tipe yang bekerja untuk banyak tipe tanpa kehilangan type safety.",
+    "syntax": "func Nama[T Constraint](v T) T",
+    "example": "func First[T any](items []T) (T, bool) {\n  if len(items) == 0 {\n    var zero T\n    return zero, false\n  }\n  return items[0], true\n}"
+  },
+  "constraint": {
+    "title": "constraint",
+    "description": "Batasan tipe yang boleh dipakai sebagai type argument. Constraint biasanya berupa interface berisi method atau type set.",
+    "syntax": "interface { ~int | ~string }",
+    "example": "type Ordered interface {\n  ~int | ~int64 | ~float64 | ~string\n}"
+  },
+  "any": {
+    "title": "any",
+    "description": "Alias untuk interface{}. Umum dipakai sebagai constraint generic yang menerima tipe apa saja.",
+    "syntax": "any",
+    "example": "func PrintAll[T any](items []T) {\n  for _, item := range items {\n    fmt.Println(item)\n  }\n}"
+  },
+  "comparable": {
+    "title": "comparable",
+    "description": "Constraint bawaan untuk tipe yang bisa dibandingkan dengan == dan !=. Wajib untuk key map generic.",
+    "syntax": "comparable",
+    "example": "func HasKey[K comparable, V any](m map[K]V, k K) bool {\n  _, ok := m[k]\n  return ok\n}"
+  },
+  "alias": {
+    "title": "type alias",
+    "description": "Alias memberi nama lain untuk tipe yang sama, bukan membuat tipe baru. Go 1.24+ mendukung generic type alias secara penuh.",
+    "syntax": "type Alias = Tipe",
+    "example": "type ID = int64\ntype Set[T comparable] = map[T]bool"
+  },
+  "Adder": {
+    "title": "Self-referential generic constraint",
+    "description": "Go 1.26+ mengizinkan generic type merujuk dirinya sendiri di daftar type parameter, berguna untuk constraint yang lebih ekspresif.",
+    "syntax": "type Adder[A Adder[A]] interface { ... }",
+    "example": "type Adder[A Adder[A]] interface {\n  Add(A) A\n}\n\nfunc Sum[A Adder[A]](x, y A) A {\n  return x.Add(y)\n}"
+  }
+}

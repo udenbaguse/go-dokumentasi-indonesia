@@ -1,0 +1,170 @@
+{
+  "fmt": {
+    "title": "fmt",
+    "description": "Paket standar untuk formatting input dan output: print ke terminal, format string, scan input, dan membuat error berformat.",
+    "syntax": "import \"fmt\"",
+    "example": "fmt.Println(\"Halo, Go\")\nname := fmt.Sprintf(\"user-%d\", 42)"
+  },
+  "fmt.Print": {
+    "title": "fmt.Print",
+    "description": "Menulis argumen ke standard output tanpa otomatis menambahkan newline.",
+    "syntax": "fmt.Print(a ...any) (n int, err error)",
+    "example": "fmt.Print(\"Halo \")\nfmt.Print(\"Go\")"
+  },
+  "fmt.Println": {
+    "title": "fmt.Println",
+    "description": "Menulis argumen ke standard output dan menambahkan newline. Spasi ditambahkan di antara operand jika diperlukan.",
+    "syntax": "fmt.Println(a ...any) (n int, err error)",
+    "example": "fmt.Println(\"Halo\", \"Go\")"
+  },
+  "fmt.Printf": {
+    "title": "fmt.Printf",
+    "description": "Menulis teks terformat ke standard output berdasarkan format verbs seperti %s, %d, %v, dan %#v.",
+    "syntax": "fmt.Printf(format string, a ...any) (n int, err error)",
+    "example": "nama := \"Ayu\"\numur := 21\nfmt.Printf(\"%s berumur %d tahun\\n\", nama, umur)"
+  },
+  "fmt.Sprint": {
+    "title": "fmt.Sprint",
+    "description": "Mengubah argumen menjadi string tanpa menulis ke output.",
+    "syntax": "fmt.Sprint(a ...any) string",
+    "example": "text := fmt.Sprint(\"total: \", 10)"
+  },
+  "fmt.Sprintln": {
+    "title": "fmt.Sprintln",
+    "description": "Seperti Println, tetapi hasilnya dikembalikan sebagai string.",
+    "syntax": "fmt.Sprintln(a ...any) string",
+    "example": "line := fmt.Sprintln(\"status\", \"ok\")"
+  },
+  "fmt.Sprintf": {
+    "title": "fmt.Sprintf",
+    "description": "Membuat string berdasarkan format verbs tanpa menulis ke output.",
+    "syntax": "fmt.Sprintf(format string, a ...any) string",
+    "example": "id := 7\nkode := fmt.Sprintf(\"USR-%03d\", id)"
+  },
+  "fmt.Fprint": {
+    "title": "fmt.Fprint",
+    "description": "Menulis argumen ke io.Writer tanpa otomatis menambahkan newline.",
+    "syntax": "fmt.Fprint(w io.Writer, a ...any) (n int, err error)",
+    "example": "fmt.Fprint(w, \"response body\")"
+  },
+  "fmt.Fprintln": {
+    "title": "fmt.Fprintln",
+    "description": "Menulis argumen ke io.Writer dan menambahkan newline.",
+    "syntax": "fmt.Fprintln(w io.Writer, a ...any) (n int, err error)",
+    "example": "fmt.Fprintln(os.Stderr, \"gagal:\", err)"
+  },
+  "fmt.Fprintf": {
+    "title": "fmt.Fprintf",
+    "description": "Menulis teks terformat ke io.Writer.",
+    "syntax": "fmt.Fprintf(w io.Writer, format string, a ...any) (n int, err error)",
+    "example": "fmt.Fprintf(w, \"id=%d\\n\", id)"
+  },
+  "fmt.Scan": {
+    "title": "fmt.Scan",
+    "description": "Membaca input dari standard input dan menyimpan hasilnya ke pointer argumen.",
+    "syntax": "fmt.Scan(a ...any) (n int, err error)",
+    "example": "var nama string\nfmt.Scan(&nama)"
+  },
+  "fmt.Scanln": {
+    "title": "fmt.Scanln",
+    "description": "Membaca input sampai newline dari standard input.",
+    "syntax": "fmt.Scanln(a ...any) (n int, err error)",
+    "example": "var nama string\nfmt.Scanln(&nama)"
+  },
+  "fmt.Scanf": {
+    "title": "fmt.Scanf",
+    "description": "Membaca input dari standard input berdasarkan format tertentu.",
+    "syntax": "fmt.Scanf(format string, a ...any) (n int, err error)",
+    "example": "var umur int\nfmt.Scanf(\"%d\", &umur)"
+  },
+  "fmt.Sscan": {
+    "title": "fmt.Sscan",
+    "description": "Membaca nilai dari string sumber dan menyimpannya ke pointer argumen.",
+    "syntax": "fmt.Sscan(str string, a ...any) (n int, err error)",
+    "example": "var n int\nfmt.Sscan(\"42\", &n)"
+  },
+  "fmt.Sscanln": {
+    "title": "fmt.Sscanln",
+    "description": "Seperti Sscan, tetapi berhenti pada newline.",
+    "syntax": "fmt.Sscanln(str string, a ...any) (n int, err error)",
+    "example": "var name string\nfmt.Sscanln(\"Ayu\\n\", &name)"
+  },
+  "fmt.Sscanf": {
+    "title": "fmt.Sscanf",
+    "description": "Membaca nilai dari string berdasarkan format tertentu.",
+    "syntax": "fmt.Sscanf(str string, format string, a ...any) (n int, err error)",
+    "example": "var id int\nfmt.Sscanf(\"USR-007\", \"USR-%03d\", &id)"
+  },
+  "fmt.Fscan": {
+    "title": "fmt.Fscan",
+    "description": "Membaca nilai dari io.Reader dan menyimpannya ke pointer argumen.",
+    "syntax": "fmt.Fscan(r io.Reader, a ...any) (n int, err error)",
+    "example": "var token string\nfmt.Fscan(reader, &token)"
+  },
+  "fmt.Fscanln": {
+    "title": "fmt.Fscanln",
+    "description": "Membaca nilai dari io.Reader sampai newline.",
+    "syntax": "fmt.Fscanln(r io.Reader, a ...any) (n int, err error)",
+    "example": "var line string\nfmt.Fscanln(reader, &line)"
+  },
+  "fmt.Fscanf": {
+    "title": "fmt.Fscanf",
+    "description": "Membaca nilai dari io.Reader berdasarkan format tertentu.",
+    "syntax": "fmt.Fscanf(r io.Reader, format string, a ...any) (n int, err error)",
+    "example": "var day, month, year int\nfmt.Fscanf(r, \"%d/%d/%d\", &day, &month, &year)"
+  },
+  "fmt.Errorf": {
+    "title": "fmt.Errorf",
+    "description": "Membuat error berformat. Gunakan %w untuk membungkus error agar bisa dicek dengan errors.Is atau errors.As.",
+    "syntax": "fmt.Errorf(format string, a ...any) error",
+    "example": "if err != nil {\n  return fmt.Errorf(\"baca config: %w\", err)\n}"
+  },
+  "fmt.Stringer": {
+    "title": "fmt.Stringer",
+    "description": "Interface untuk tipe yang punya representasi string kustom lewat method String.",
+    "syntax": "type Stringer interface { String() string }",
+    "example": "func (u User) String() string {\n  return u.Name\n}"
+  },
+  "fmt.GoStringer": {
+    "title": "fmt.GoStringer",
+    "description": "Interface untuk representasi Go-syntax kustom saat diformat dengan %#v.",
+    "syntax": "type GoStringer interface { GoString() string }",
+    "example": "func (u User) GoString() string {\n  return fmt.Sprintf(\"User{Name:%q}\", u.Name)\n}"
+  },
+  "fmt.Formatter": {
+    "title": "fmt.Formatter",
+    "description": "Interface tingkat lanjut untuk mengontrol sendiri formatting nilai saat dipakai oleh fmt.",
+    "syntax": "type Formatter interface { Format(f State, verb rune) }",
+    "example": "func (m Money) Format(s fmt.State, verb rune) {\n  fmt.Fprintf(s, \"Rp%d\", m)\n}"
+  },
+  "fmt.Scanner": {
+    "title": "fmt.Scanner",
+    "description": "Interface untuk tipe yang bisa membaca representasinya sendiri saat dipakai oleh fmt.Fscan dan keluarga Scan.",
+    "syntax": "type Scanner interface { Scan(state ScanState, verb rune) error }",
+    "example": "func (id *UserID) Scan(state fmt.ScanState, verb rune) error {\n  token, err := state.Token(true, nil)\n  if err != nil {\n    return err\n  }\n  *id = UserID(token)\n  return nil\n}"
+  },
+  "Println": {
+    "title": "fmt.Println atau println",
+    "description": "Di Go, Println biasanya berarti fmt.Println untuk output normal. Built-in println hanya untuk debug sederhana dan tidak disarankan untuk output aplikasi.",
+    "syntax": "fmt.Println(a ...any)",
+    "example": "fmt.Println(\"Halo, Go\")"
+  },
+  "Printf": {
+    "title": "fmt.Printf",
+    "description": "Menulis output terformat ke standard output.",
+    "syntax": "fmt.Printf(format string, a ...any)",
+    "example": "fmt.Printf(\"nama=%s umur=%d\\n\", nama, umur)"
+  },
+  "Sprintf": {
+    "title": "fmt.Sprintf",
+    "description": "Membuat string dari format dan argumen.",
+    "syntax": "fmt.Sprintf(format string, a ...any) string",
+    "example": "slug := fmt.Sprintf(\"post-%d\", id)"
+  },
+  "Errorf": {
+    "title": "fmt.Errorf",
+    "description": "Membuat error berformat dan bisa membungkus error lain dengan %w.",
+    "syntax": "fmt.Errorf(format string, a ...any) error",
+    "example": "return fmt.Errorf(\"simpan data: %w\", err)"
+  }
+}

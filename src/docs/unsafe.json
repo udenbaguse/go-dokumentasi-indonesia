@@ -1,0 +1,62 @@
+{
+  "unsafe": {
+    "title": "unsafe",
+    "description": "Paket untuk operasi yang melewati type safety Go. Gunakan hanya saat benar-benar perlu, misalnya interop low-level atau optimisasi yang terukur.",
+    "syntax": "import \"unsafe\"",
+    "example": "size := unsafe.Sizeof(value)"
+  },
+  "unsafe.Pointer": {
+    "title": "unsafe.Pointer",
+    "description": "Pointer khusus yang bisa dikonversi dari dan ke pointer tipe apa pun. Salah pakai bisa membuat program tidak aman.",
+    "syntax": "unsafe.Pointer(p)",
+    "example": "addr := unsafe.Pointer(&value)"
+  },
+  "unsafe.Sizeof": {
+    "title": "unsafe.Sizeof",
+    "description": "Mengembalikan ukuran memori representasi nilai dalam byte.",
+    "syntax": "unsafe.Sizeof(x)",
+    "example": "fmt.Println(unsafe.Sizeof(int64(0)))"
+  },
+  "unsafe.Alignof": {
+    "title": "unsafe.Alignof",
+    "description": "Mengembalikan alignment yang dibutuhkan nilai dalam byte.",
+    "syntax": "unsafe.Alignof(x)",
+    "example": "fmt.Println(unsafe.Alignof(struct{ N int64 }{}))"
+  },
+  "unsafe.Offsetof": {
+    "title": "unsafe.Offsetof",
+    "description": "Mengembalikan offset field struct dalam byte dari awal struct.",
+    "syntax": "unsafe.Offsetof(s.Field)",
+    "example": "type Header struct{ A byte; B int32 }\nfmt.Println(unsafe.Offsetof(Header{}.B))"
+  },
+  "unsafe.Add": {
+    "title": "unsafe.Add",
+    "description": "Menambahkan offset byte ke unsafe.Pointer.",
+    "syntax": "unsafe.Add(ptr unsafe.Pointer, len IntegerType) unsafe.Pointer",
+    "example": "next := unsafe.Add(ptr, unsafe.Sizeof(value))"
+  },
+  "unsafe.Slice": {
+    "title": "unsafe.Slice",
+    "description": "Membuat slice dari pointer dan panjang. Data harus valid selama slice digunakan.",
+    "syntax": "unsafe.Slice(ptr *T, len IntegerType) []T",
+    "example": "items := unsafe.Slice(ptr, n)"
+  },
+  "unsafe.String": {
+    "title": "unsafe.String",
+    "description": "Membuat string dari pointer byte dan panjang tanpa copy. Data harus immutable selama string dipakai.",
+    "syntax": "unsafe.String(ptr *byte, len IntegerType) string",
+    "example": "s := unsafe.String(ptr, n)"
+  },
+  "unsafe.StringData": {
+    "title": "unsafe.StringData",
+    "description": "Mengambil pointer ke data byte dari string. Jangan mengubah data di balik string.",
+    "syntax": "unsafe.StringData(str string) *byte",
+    "example": "ptr := unsafe.StringData(s)"
+  },
+  "unsafe.SliceData": {
+    "title": "unsafe.SliceData",
+    "description": "Mengambil pointer ke elemen pertama slice, atau nil untuk slice kosong tertentu.",
+    "syntax": "unsafe.SliceData(slice []T) *T",
+    "example": "ptr := unsafe.SliceData(buf)"
+  }
+}

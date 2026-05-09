@@ -1,0 +1,116 @@
+{
+  "package": {
+    "title": "package",
+    "description": "Menentukan nama paket untuk file ini. File yang berada dalam folder yang sama harus memiliki nama paket yang sama.",
+    "syntax": "package <nama_paket>",
+    "example": "package main"
+  },
+  "import": {
+    "title": "import",
+    "description": "Digunakan untuk menggunakan kode dari paket lain. Paket standar atau paket eksternal harus di-import sebelum digunakan.",
+    "syntax": "import \"<nama_paket>\"",
+    "example": "import (\n  \"fmt\"\n  \"math/rand\"\n)"
+  },
+  "func": {
+    "title": "func",
+    "description": "Mendeklarasikan fungsi baru. Go mendukung fungsi dengan banyak nilai kembalian (multiple return values).",
+    "syntax": "func namaFungsi(param tipe) tipeBalik { ... }",
+    "example": "func tambah(a int, b int) int {\n  return a + b\n}"
+  },
+  "defer": {
+    "title": "defer",
+    "description": "Menunda eksekusi fungsi hingga fungsi yang melingkupinya selesai dieksekusi. Sering digunakan untuk cleanup resource.",
+    "syntax": "defer fungsiLain()",
+    "example": "file, _ := os.Open(\"test.txt\")\ndefer file.Close()"
+  },
+  "var": {
+    "title": "var",
+    "description": "Mendeklarasikan variabel. Jika nilai awal tidak diberikan, Go memberi zero value sesuai tipe.",
+    "syntax": "var nama Tipe = nilai",
+    "example": "var nama string = \"Dina\"\nvar aktif bool"
+  },
+  "const": {
+    "title": "const",
+    "description": "Mendeklarasikan konstanta yang nilainya diketahui saat kompilasi dan tidak bisa diubah.",
+    "syntax": "const Nama = nilai",
+    "example": "const Pi = 3.14\nconst Bahasa = \"Go\""
+  },
+  "type": {
+    "title": "type",
+    "description": "Mendeklarasikan tipe baru atau type alias. Dipakai untuk struct, interface, constraint, dan alias generic.",
+    "syntax": "type Nama Tipe\n type Alias = Tipe",
+    "example": "type UserID int64\ntype Set[T comparable] = map[T]bool"
+  },
+  "if": {
+    "title": "if",
+    "description": "Menjalankan blok kode hanya jika kondisi bernilai true. Bisa memakai statement pendek sebelum kondisi.",
+    "syntax": "if kondisi { ... }",
+    "example": "if n := len(items); n == 0 {\n  return\n}"
+  },
+  "else": {
+    "title": "else",
+    "description": "Blok alternatif ketika kondisi if sebelumnya bernilai false.",
+    "syntax": "if kondisi { ... } else { ... }",
+    "example": "if umur >= 18 {\n  fmt.Println(\"dewasa\")\n} else {\n  fmt.Println(\"belum\")\n}"
+  },
+  "for": {
+    "title": "for",
+    "description": "Satu-satunya keyword loop di Go. Bisa dipakai sebagai loop klasik, while-style, infinite loop, atau bersama range. Sejak Go 1.22, variabel loop yang dideklarasikan di loop dibuat baru per iterasi.",
+    "syntax": "for init; kondisi; post { ... }",
+    "example": "for i := 0; i < 3; i++ {\n  fmt.Println(i)\n}"
+  },
+  "range": {
+    "title": "range",
+    "description": "Mengiterasi array, slice, map, string, channel, integer (Go 1.22+), dan iterator function (Go 1.23+).",
+    "syntax": "for key, value := range data { ... }",
+    "example": "for i := range 5 {\n  fmt.Println(i)\n}\n\nfor v := range slices.Values(nums) {\n  fmt.Println(v)\n}"
+  },
+  "switch": {
+    "title": "switch",
+    "description": "Percabangan multi-kasus. Go otomatis break setelah case cocok, kecuali memakai fallthrough.",
+    "syntax": "switch ekspresi { case nilai: ... default: ... }",
+    "example": "switch hari {\ncase \"sabtu\", \"minggu\":\n  fmt.Println(\"libur\")\ndefault:\n  fmt.Println(\"kerja\")\n}"
+  },
+  "case": {
+    "title": "case",
+    "description": "Menandai cabang dalam switch atau select yang akan dijalankan saat ekspresi atau operasi komunikasi cocok.",
+    "syntax": "case nilai:",
+    "example": "switch status {\ncase 200:\n  fmt.Println(\"OK\")\n}"
+  },
+  "default": {
+    "title": "default",
+    "description": "Cabang fallback pada switch atau select ketika tidak ada case lain yang cocok atau siap.",
+    "syntax": "default:",
+    "example": "select {\ndefault:\n  fmt.Println(\"tidak ada pesan\")\n}"
+  },
+  "fallthrough": {
+    "title": "fallthrough",
+    "description": "Memaksa eksekusi lanjut ke case berikutnya dalam switch. Jarang dipakai karena Go tidak fallthrough otomatis.",
+    "syntax": "fallthrough",
+    "example": "switch n {\ncase 1:\n  fmt.Println(\"satu\")\n  fallthrough\ncase 2:\n  fmt.Println(\"lanjut\")\n}"
+  },
+  "break": {
+    "title": "break",
+    "description": "Menghentikan for, switch, atau select yang sedang berjalan. Bisa memakai label untuk keluar dari blok luar.",
+    "syntax": "break",
+    "example": "for {\n  if selesai {\n    break\n  }\n}"
+  },
+  "continue": {
+    "title": "continue",
+    "description": "Melompati sisa iterasi for saat ini dan lanjut ke iterasi berikutnya.",
+    "syntax": "continue",
+    "example": "for _, n := range nums {\n  if n < 0 {\n    continue\n  }\n  fmt.Println(n)\n}"
+  },
+  "goto": {
+    "title": "goto",
+    "description": "Melompat ke label dalam fungsi yang sama. Fitur ini ada di Go, tetapi sebaiknya dipakai sangat hati-hati.",
+    "syntax": "goto Label",
+    "example": "goto Selesai\n\nSelesai:\nfmt.Println(\"done\")"
+  },
+  "return": {
+    "title": "return",
+    "description": "Mengakhiri fungsi dan mengembalikan nilai. Mendukung banyak nilai kembalian.",
+    "syntax": "return nilai1, nilai2",
+    "example": "func bagi(a, b int) (int, error) {\n  if b == 0 {\n    return 0, errors.New(\"nol\")\n  }\n  return a / b, nil\n}"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "go": {
+    "title": "go (Goroutine)",
+    "description": "Menjalankan fungsi secara konkuren (di latar belakang) sebagai thread ringan.",
+    "syntax": "go fungsi()",
+    "example": "go func() {\n  fmt.Println(\"Halo dari goroutine\")\n}()"
+  },
+  "chan": {
+    "title": "chan (Channel)",
+    "description": "Media komunikasi antar goroutine agar bisa berkirim data dengan aman.",
+    "syntax": "make(chan tipe)",
+    "example": "pesan := make(chan string)\npesan <- \"ping\" // kirim\nmsg := <-pesan  // terima"
+  },
+  "select": {
+    "title": "select",
+    "description": "Seperti switch tetapi khusus untuk operasi komunikasi channel.",
+    "syntax": "select { case <-ch: ... default: ... }",
+    "example": "select {\ncase m1 := <-c1:\n  fmt.Println(m1)\ndefault:\n  fmt.Println(\"nunggu...\")\n}"
+  },
+  "Mutex": {
+    "title": "sync.Mutex",
+    "description": "Lock mutual exclusion untuk melindungi data bersama dari akses bersamaan.",
+    "syntax": "var mu sync.Mutex",
+    "example": "mu.Lock()\ncount++\nmu.Unlock()"
+  },
+  "RWMutex": {
+    "title": "sync.RWMutex",
+    "description": "Mutex dengan lock baca dan tulis. Banyak reader boleh berjalan bersamaan, writer tetap eksklusif.",
+    "syntax": "var mu sync.RWMutex",
+    "example": "mu.RLock()\nvalue := cache[key]\nmu.RUnlock()"
+  },
+  "WaitGroup": {
+    "title": "sync.WaitGroup",
+    "description": "Menunggu sekumpulan goroutine selesai. Sejak Go 1.25, WaitGroup.Go memulai goroutine sekaligus mengatur counter.",
+    "syntax": "var wg sync.WaitGroup",
+    "example": "var wg sync.WaitGroup\nfor _, job := range jobs {\n  wg.Go(func() {\n    proses(job)\n  })\n}\nwg.Wait()"
+  },
+  "Go": {
+    "title": "sync.WaitGroup.Go",
+    "description": "Method Go 1.25+ yang menjalankan fungsi dalam goroutine baru dan otomatis melakukan Add/Done pada WaitGroup.",
+    "syntax": "wg.Go(func() { ... })",
+    "example": "var wg sync.WaitGroup\nwg.Go(func() {\n  fetch(url)\n})\nwg.Wait()"
+  },
+  "Once": {
+    "title": "sync.Once",
+    "description": "Menjamin fungsi hanya dieksekusi satu kali meskipun dipanggil dari banyak goroutine.",
+    "syntax": "once.Do(func() { ... })",
+    "example": "var once sync.Once\nonce.Do(func() {\n  initConfig()\n})"
+  },
+  "OnceFunc": {
+    "title": "sync.OnceFunc",
+    "description": "Fungsi Go 1.21+ yang mengubah func biasa menjadi func yang hanya berjalan satu kali dan aman dipanggil concurrent.",
+    "syntax": "sync.OnceFunc(f)",
+    "example": "load := sync.OnceFunc(func() {\n  initConfig()\n})\nload()\nload()"
+  },
+  "OnceValue": {
+    "title": "sync.OnceValue",
+    "description": "Fungsi Go 1.21+ untuk menghitung satu nilai hanya sekali lalu mengembalikan cache-nya pada pemanggilan berikutnya.",
+    "syntax": "sync.OnceValue(func() T)",
+    "example": "config := sync.OnceValue(func() Config {\n  return loadConfig()\n})\nfmt.Println(config())"
+  },
+  "OnceValues": {
+    "title": "sync.OnceValues",
+    "description": "Fungsi Go 1.21+ seperti OnceValue, tetapi untuk fungsi yang mengembalikan dua nilai.",
+    "syntax": "sync.OnceValues(func() (T1, T2))",
+    "example": "load := sync.OnceValues(func() (Config, error) {\n  return readConfig()\n})\ncfg, err := load()"
+  },
+  "Pool": {
+    "title": "sync.Pool",
+    "description": "Pool objek sementara yang aman untuk concurrency. Cocok untuk mengurangi alokasi object yang sering dibuat ulang.",
+    "syntax": "var pool sync.Pool",
+    "example": "pool := sync.Pool{New: func() any { return new(bytes.Buffer) }}\nbuf := pool.Get().(*bytes.Buffer)\ndefer pool.Put(buf)"
+  },
+  "Cond": {
+    "title": "sync.Cond",
+    "description": "Primitive untuk membuat goroutine menunggu sampai kondisi tertentu diberi sinyal.",
+    "syntax": "sync.NewCond(locker)",
+    "example": "cond := sync.NewCond(&sync.Mutex{})\ncond.L.Lock()\ncond.Wait()\ncond.L.Unlock()"
+  },
+  "atomic": {
+    "title": "sync/atomic",
+    "description": "Operasi atomik level rendah untuk counter, flag, atau pointer yang dibagi antar goroutine.",
+    "syntax": "atomic.AddInt64(&x, 1)",
+    "example": "var total atomic.Int64\ntotal.Add(1)\nfmt.Println(total.Load())"
+  },
+  "Context": {
+    "title": "context.Context",
+    "description": "Membawa deadline, cancellation, dan request-scoped value lintas goroutine dan API.",
+    "syntax": "ctx, cancel := context.WithCancel(parent)",
+    "example": "ctx, cancel := context.WithTimeout(context.Background(), time.Second)\ndefer cancel()\n\nselect {\ncase <-ctx.Done():\n  return ctx.Err()\ncase data := <-ch:\n  return proses(data)\n}"
+  },
+  "GOMAXPROCS": {
+    "title": "GOMAXPROCS",
+    "description": "Mengatur jumlah maksimum thread OS yang menjalankan kode Go secara bersamaan. Sejak Go 1.25, default-nya lebih sadar limit CPU container.",
+    "syntax": "runtime.GOMAXPROCS(n)",
+    "example": "lama := runtime.GOMAXPROCS(0)\nfmt.Println(lama)"
+  },
+  "Timer": {
+    "title": "time.Timer",
+    "description": "Menjalankan event satu kali setelah durasi tertentu. Stop atau drain channel timer bila perlu untuk menghindari race logika.",
+    "syntax": "time.NewTimer(durasi)",
+    "example": "timer := time.NewTimer(time.Second)\nselect {\ncase <-timer.C:\n  fmt.Println(\"timeout\")\n}"
+  },
+  "Ticker": {
+    "title": "time.Ticker",
+    "description": "Mengirim tick berulang pada interval tertentu. Selalu panggil Stop saat tidak dipakai lagi.",
+    "syntax": "time.NewTicker(interval)",
+    "example": "ticker := time.NewTicker(time.Second)\ndefer ticker.Stop()\nfor t := range ticker.C {\n  fmt.Println(t)\n}"
+  }
+}

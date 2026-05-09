@@ -1,0 +1,734 @@
+{
+  "bufio": {
+    "title": "bufio",
+    "description": "Paket untuk buffered I/O, membaca dan menulis data lewat buffer agar lebih efisien.",
+    "syntax": "import \"bufio\"",
+    "example": "scanner := bufio.NewScanner(os.Stdin)\nfor scanner.Scan() {\n  fmt.Println(scanner.Text())\n}"
+  },
+  "bufio.NewReader": {
+    "title": "bufio.NewReader",
+    "description": "Membuat reader dengan buffer untuk membaca data secara efisien dari io.Reader.",
+    "syntax": "bufio.NewReader(r io.Reader) *bufio.Reader",
+    "example": "reader := bufio.NewReader(os.Stdin)\nline, err := reader.ReadString('\\n')"
+  },
+  "bufio.NewScanner": {
+    "title": "bufio.NewScanner",
+    "description": "Membuat scanner untuk membaca input token demi token, sering dipakai untuk membaca baris teks.",
+    "syntax": "bufio.NewScanner(r io.Reader) *bufio.Scanner",
+    "example": "scanner := bufio.NewScanner(file)\nfor scanner.Scan() {\n  fmt.Println(scanner.Text())\n}"
+  },
+  "bytes": {
+    "title": "bytes",
+    "description": "Paket untuk operasi []byte, mirip strings tetapi bekerja pada byte slice.",
+    "syntax": "import \"bytes\"",
+    "example": "ok := bytes.Contains(data, []byte(\"go\"))"
+  },
+  "bytes.Buffer": {
+    "title": "bytes.Buffer",
+    "description": "Buffer byte yang bisa tumbuh, mengimplementasikan io.Reader dan io.Writer.",
+    "syntax": "var b bytes.Buffer",
+    "example": "var b bytes.Buffer\nb.WriteString(\"halo\")\nfmt.Println(b.String())"
+  },
+  "bytes.Contains": {
+    "title": "bytes.Contains",
+    "description": "Mengecek apakah byte slice mengandung subslice tertentu.",
+    "syntax": "bytes.Contains(b, subslice []byte) bool",
+    "example": "if bytes.Contains(data, []byte(\"OK\")) {\n  fmt.Println(\"valid\")\n}"
+  },
+  "strings": {
+    "title": "strings",
+    "description": "Paket untuk memproses string: mencari, memotong, mengganti, split, join, dan builder string.",
+    "syntax": "import \"strings\"",
+    "example": "parts := strings.Split(\"a,b,c\", \",\")\ntext := strings.Join(parts, \"-\")"
+  },
+  "strings.Contains": {
+    "title": "strings.Contains",
+    "description": "Mengecek apakah string mengandung substring tertentu.",
+    "syntax": "strings.Contains(s, substr string) bool",
+    "example": "if strings.Contains(email, \"@\") {\n  fmt.Println(\"email valid\")\n}"
+  },
+  "strings.HasPrefix": {
+    "title": "strings.HasPrefix",
+    "description": "Mengecek apakah string diawali prefix tertentu.",
+    "syntax": "strings.HasPrefix(s, prefix string) bool",
+    "example": "if strings.HasPrefix(path, \"/api\") {\n  routeAPI()\n}"
+  },
+  "strings.HasSuffix": {
+    "title": "strings.HasSuffix",
+    "description": "Mengecek apakah string diakhiri suffix tertentu.",
+    "syntax": "strings.HasSuffix(s, suffix string) bool",
+    "example": "if strings.HasSuffix(name, \".go\") {\n  fmt.Println(\"file Go\")\n}"
+  },
+  "strings.Split": {
+    "title": "strings.Split",
+    "description": "Memecah string menjadi slice berdasarkan separator.",
+    "syntax": "strings.Split(s, sep string) []string",
+    "example": "parts := strings.Split(\"a,b,c\", \",\")"
+  },
+  "strings.Join": {
+    "title": "strings.Join",
+    "description": "Menggabungkan slice string menggunakan separator.",
+    "syntax": "strings.Join(elems []string, sep string) string",
+    "example": "slug := strings.Join([]string{\"go\", \"docs\"}, \"-\")"
+  },
+  "strings.TrimSpace": {
+    "title": "strings.TrimSpace",
+    "description": "Menghapus whitespace di awal dan akhir string.",
+    "syntax": "strings.TrimSpace(s string) string",
+    "example": "name := strings.TrimSpace(input)"
+  },
+  "strings.ReplaceAll": {
+    "title": "strings.ReplaceAll",
+    "description": "Mengganti semua kemunculan substring lama dengan substring baru.",
+    "syntax": "strings.ReplaceAll(s, old, new string) string",
+    "example": "safe := strings.ReplaceAll(text, \" \", \"-\")"
+  },
+  "strings.Builder": {
+    "title": "strings.Builder",
+    "description": "Builder efisien untuk menyusun string bertahap tanpa banyak alokasi.",
+    "syntax": "var b strings.Builder",
+    "example": "var b strings.Builder\nb.WriteString(\"halo\")\nb.WriteString(\" go\")\nfmt.Println(b.String())"
+  },
+  "strconv": {
+    "title": "strconv",
+    "description": "Paket konversi string ke tipe dasar dan sebaliknya, seperti int, bool, float, dan quote/unquote.",
+    "syntax": "import \"strconv\"",
+    "example": "n, err := strconv.Atoi(\"42\")\ntext := strconv.Itoa(n)"
+  },
+  "strconv.Atoi": {
+    "title": "strconv.Atoi",
+    "description": "Mengubah string desimal menjadi int.",
+    "syntax": "strconv.Atoi(s string) (int, error)",
+    "example": "n, err := strconv.Atoi(\"42\")"
+  },
+  "strconv.Itoa": {
+    "title": "strconv.Itoa",
+    "description": "Mengubah int menjadi string desimal.",
+    "syntax": "strconv.Itoa(i int) string",
+    "example": "text := strconv.Itoa(42)"
+  },
+  "strconv.ParseInt": {
+    "title": "strconv.ParseInt",
+    "description": "Mengubah string menjadi integer bertanda dengan base dan ukuran bit tertentu.",
+    "syntax": "strconv.ParseInt(s string, base int, bitSize int) (int64, error)",
+    "example": "n, err := strconv.ParseInt(\"ff\", 16, 64)"
+  },
+  "strconv.FormatInt": {
+    "title": "strconv.FormatInt",
+    "description": "Mengubah int64 menjadi string dengan base tertentu.",
+    "syntax": "strconv.FormatInt(i int64, base int) string",
+    "example": "hex := strconv.FormatInt(255, 16)"
+  },
+  "strconv.ParseBool": {
+    "title": "strconv.ParseBool",
+    "description": "Mengubah string seperti true, false, 1, atau 0 menjadi bool.",
+    "syntax": "strconv.ParseBool(str string) (bool, error)",
+    "example": "enabled, err := strconv.ParseBool(\"true\")"
+  },
+  "time": {
+    "title": "time",
+    "description": "Paket untuk waktu, tanggal, durasi, timer, ticker, parsing, dan formatting waktu.",
+    "syntax": "import \"time\"",
+    "example": "now := time.Now()\ntime.Sleep(100 * time.Millisecond)"
+  },
+  "time.Now": {
+    "title": "time.Now",
+    "description": "Mengembalikan waktu saat ini.",
+    "syntax": "time.Now() time.Time",
+    "example": "start := time.Now()\nfmt.Println(time.Since(start))"
+  },
+  "time.Sleep": {
+    "title": "time.Sleep",
+    "description": "Menghentikan goroutine saat ini selama durasi tertentu.",
+    "syntax": "time.Sleep(d time.Duration)",
+    "example": "time.Sleep(500 * time.Millisecond)"
+  },
+  "time.Duration": {
+    "title": "time.Duration",
+    "description": "Tipe durasi berbasis nanosecond. Biasanya dikalikan dengan konstanta seperti time.Second.",
+    "syntax": "type Duration int64",
+    "example": "timeout := 5 * time.Second"
+  },
+  "time.Parse": {
+    "title": "time.Parse",
+    "description": "Mengubah string menjadi time.Time berdasarkan layout Go. Layout memakai referensi unik 2006-01-02 15:04:05.",
+    "syntax": "time.Parse(layout, value string) (time.Time, error)",
+    "example": "t, err := time.Parse(\"2006-01-02\", \"2026-05-09\")"
+  },
+  "time.Since": {
+    "title": "time.Since",
+    "description": "Mengembalikan durasi sejak waktu tertentu sampai sekarang.",
+    "syntax": "time.Since(t time.Time) time.Duration",
+    "example": "start := time.Now()\n// ...\nfmt.Println(time.Since(start))"
+  },
+  "time.After": {
+    "title": "time.After",
+    "description": "Mengembalikan channel yang menerima waktu setelah durasi tertentu. Berguna untuk timeout sederhana.",
+    "syntax": "time.After(d time.Duration) <-chan time.Time",
+    "example": "select {\ncase <-time.After(time.Second):\n  return errors.New(\"timeout\")\n}"
+  },
+  "context": {
+    "title": "context",
+    "description": "Paket untuk cancellation, deadline, timeout, dan request-scoped value lintas API dan goroutine.",
+    "syntax": "import \"context\"",
+    "example": "ctx, cancel := context.WithTimeout(context.Background(), time.Second)\ndefer cancel()"
+  },
+  "context.Background": {
+    "title": "context.Background",
+    "description": "Context root kosong yang tidak pernah dibatalkan. Umum dipakai di main, init, dan test.",
+    "syntax": "context.Background() context.Context",
+    "example": "ctx := context.Background()"
+  },
+  "context.TODO": {
+    "title": "context.TODO",
+    "description": "Context placeholder ketika belum jelas context mana yang harus digunakan.",
+    "syntax": "context.TODO() context.Context",
+    "example": "ctx := context.TODO()"
+  },
+  "context.WithCancel": {
+    "title": "context.WithCancel",
+    "description": "Membuat child context yang bisa dibatalkan manual.",
+    "syntax": "context.WithCancel(parent) (context.Context, context.CancelFunc)",
+    "example": "ctx, cancel := context.WithCancel(parent)\ndefer cancel()"
+  },
+  "context.WithTimeout": {
+    "title": "context.WithTimeout",
+    "description": "Membuat child context yang otomatis batal setelah durasi tertentu.",
+    "syntax": "context.WithTimeout(parent, timeout)",
+    "example": "ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)\ndefer cancel()"
+  },
+  "context.WithValue": {
+    "title": "context.WithValue",
+    "description": "Menyimpan value request-scoped dalam context. Jangan dipakai untuk parameter biasa.",
+    "syntax": "context.WithValue(parent, key, value)",
+    "example": "ctx := context.WithValue(parent, userKey, userID)"
+  },
+  "errors": {
+    "title": "errors",
+    "description": "Paket untuk membuat, membandingkan, membungkus, dan memeriksa error.",
+    "syntax": "import \"errors\"",
+    "example": "err := errors.New(\"data tidak valid\")"
+  },
+  "errors.New": {
+    "title": "errors.New",
+    "description": "Membuat error baru dari string tetap.",
+    "syntax": "errors.New(text string) error",
+    "example": "return errors.New(\"nama wajib diisi\")"
+  },
+  "errors.Is": {
+    "title": "errors.Is",
+    "description": "Mengecek apakah error sama dengan target, termasuk error yang dibungkus.",
+    "syntax": "errors.Is(err, target error) bool",
+    "example": "if errors.Is(err, os.ErrNotExist) {\n  return nil\n}"
+  },
+  "errors.As": {
+    "title": "errors.As",
+    "description": "Mengecek dan mengambil error dengan tipe tertentu dari rantai error yang dibungkus.",
+    "syntax": "errors.As(err, target any) bool",
+    "example": "var pathErr *fs.PathError\nif errors.As(err, &pathErr) {\n  fmt.Println(pathErr.Path)\n}"
+  },
+  "errors.Join": {
+    "title": "errors.Join",
+    "description": "Menggabungkan beberapa error menjadi satu error yang tetap bisa diperiksa dengan errors.Is dan errors.As.",
+    "syntax": "errors.Join(errs ...error) error",
+    "example": "return errors.Join(closeErr, flushErr)"
+  },
+  "os": {
+    "title": "os",
+    "description": "Paket untuk operasi sistem operasi: file, environment variable, process, argument, dan signal dasar.",
+    "syntax": "import \"os\"",
+    "example": "data, err := os.ReadFile(\"config.json\")"
+  },
+  "os.Open": {
+    "title": "os.Open",
+    "description": "Membuka file untuk dibaca.",
+    "syntax": "os.Open(name string) (*os.File, error)",
+    "example": "file, err := os.Open(\"data.txt\")\nif err != nil {\n  return err\n}\ndefer file.Close()"
+  },
+  "os.Create": {
+    "title": "os.Create",
+    "description": "Membuat atau truncate file untuk ditulis.",
+    "syntax": "os.Create(name string) (*os.File, error)",
+    "example": "file, err := os.Create(\"out.txt\")"
+  },
+  "os.ReadFile": {
+    "title": "os.ReadFile",
+    "description": "Membaca seluruh isi file ke []byte.",
+    "syntax": "os.ReadFile(name string) ([]byte, error)",
+    "example": "data, err := os.ReadFile(\"config.json\")"
+  },
+  "os.WriteFile": {
+    "title": "os.WriteFile",
+    "description": "Menulis []byte ke file, membuat file jika belum ada.",
+    "syntax": "os.WriteFile(name string, data []byte, perm fs.FileMode) error",
+    "example": "err := os.WriteFile(\"out.txt\", []byte(\"halo\"), 0644)"
+  },
+  "os.Getenv": {
+    "title": "os.Getenv",
+    "description": "Mengambil nilai environment variable. Jika tidak ada, hasilnya string kosong.",
+    "syntax": "os.Getenv(key string) string",
+    "example": "port := os.Getenv(\"PORT\")"
+  },
+  "os.LookupEnv": {
+    "title": "os.LookupEnv",
+    "description": "Mengambil environment variable sekaligus informasi apakah key benar-benar ada.",
+    "syntax": "os.LookupEnv(key string) (string, bool)",
+    "example": "value, ok := os.LookupEnv(\"PORT\")"
+  },
+  "os.Exit": {
+    "title": "os.Exit",
+    "description": "Mengakhiri program dengan exit code. Deferred function tidak dijalankan.",
+    "syntax": "os.Exit(code int)",
+    "example": "if err != nil {\n  os.Exit(1)\n}"
+  },
+  "io": {
+    "title": "io",
+    "description": "Paket primitive I/O: Reader, Writer, Copy, ReadAll, EOF, dan helper stream.",
+    "syntax": "import \"io\"",
+    "example": "data, err := io.ReadAll(reader)"
+  },
+  "io.Reader": {
+    "title": "io.Reader",
+    "description": "Interface sumber data stream. Banyak API Go menerima Reader agar fleksibel.",
+    "syntax": "type Reader interface { Read(p []byte) (n int, err error) }",
+    "example": "func Load(r io.Reader) error {\n  data, err := io.ReadAll(r)\n  return err\n}"
+  },
+  "io.Writer": {
+    "title": "io.Writer",
+    "description": "Interface tujuan penulisan data stream.",
+    "syntax": "type Writer interface { Write(p []byte) (n int, err error) }",
+    "example": "func Save(w io.Writer, data []byte) error {\n  _, err := w.Write(data)\n  return err\n}"
+  },
+  "io.Copy": {
+    "title": "io.Copy",
+    "description": "Menyalin data dari Reader ke Writer sampai EOF atau error.",
+    "syntax": "io.Copy(dst io.Writer, src io.Reader) (written int64, err error)",
+    "example": "_, err := io.Copy(dst, src)"
+  },
+  "io.ReadAll": {
+    "title": "io.ReadAll",
+    "description": "Membaca semua data dari Reader sampai EOF dan mengembalikannya sebagai []byte.",
+    "syntax": "io.ReadAll(r io.Reader) ([]byte, error)",
+    "example": "body, err := io.ReadAll(resp.Body)"
+  },
+  "io.EOF": {
+    "title": "io.EOF",
+    "description": "Sentinel error yang menandakan akhir input stream.",
+    "syntax": "io.EOF",
+    "example": "if errors.Is(err, io.EOF) {\n  break\n}"
+  },
+  "net": {
+    "title": "net",
+    "description": "Paket networking dasar untuk TCP, UDP, Unix socket, IP, DNS, listener, dan dialer.",
+    "syntax": "import \"net\"",
+    "example": "conn, err := net.Dial(\"tcp\", \"example.com:80\")"
+  },
+  "net.Dial": {
+    "title": "net.Dial",
+    "description": "Membuka koneksi network ke alamat tertentu.",
+    "syntax": "net.Dial(network, address string) (net.Conn, error)",
+    "example": "conn, err := net.Dial(\"tcp\", \"example.com:80\")"
+  },
+  "net.Listen": {
+    "title": "net.Listen",
+    "description": "Membuat listener network untuk menerima koneksi masuk.",
+    "syntax": "net.Listen(network, address string) (net.Listener, error)",
+    "example": "ln, err := net.Listen(\"tcp\", \":8080\")"
+  },
+  "net.JoinHostPort": {
+    "title": "net.JoinHostPort",
+    "description": "Menggabungkan host dan port dengan format aman untuk IPv4 dan IPv6.",
+    "syntax": "net.JoinHostPort(host, port string) string",
+    "example": "addr := net.JoinHostPort(\"::1\", \"8080\")"
+  },
+  "http": {
+    "title": "net/http",
+    "description": "Paket HTTP client dan server standar Go.",
+    "syntax": "import \"net/http\"",
+    "example": "http.HandleFunc(\"/\", handler)\nhttp.ListenAndServe(\":8080\", nil)"
+  },
+  "http.Client": {
+    "title": "http.Client",
+    "description": "Client HTTP yang bisa dikonfigurasi untuk timeout, transport, redirect, dan cookie jar.",
+    "syntax": "client := &http.Client{Timeout: 5 * time.Second}",
+    "example": "client := &http.Client{Timeout: 5 * time.Second}\nresp, err := client.Get(url)"
+  },
+  "http.Server": {
+    "title": "http.Server",
+    "description": "Server HTTP yang bisa dikonfigurasi untuk alamat, handler, timeout, TLS, dan lifecycle.",
+    "syntax": "http.Server{Addr: \":8080\", Handler: mux}",
+    "example": "srv := &http.Server{Addr: \":8080\", Handler: mux}\nerr := srv.ListenAndServe()"
+  },
+  "http.HandleFunc": {
+    "title": "http.HandleFunc",
+    "description": "Mendaftarkan handler function ke DefaultServeMux.",
+    "syntax": "http.HandleFunc(pattern string, handler func(http.ResponseWriter, *http.Request))",
+    "example": "http.HandleFunc(\"/hello\", func(w http.ResponseWriter, r *http.Request) {\n  fmt.Fprintln(w, \"hello\")\n})"
+  },
+  "http.NewServeMux": {
+    "title": "http.NewServeMux",
+    "description": "Membuat HTTP request multiplexer baru untuk routing handler.",
+    "syntax": "http.NewServeMux() *http.ServeMux",
+    "example": "mux := http.NewServeMux()\nmux.HandleFunc(\"/\", home)"
+  },
+  "http.ListenAndServe": {
+    "title": "http.ListenAndServe",
+    "description": "Menjalankan server HTTP pada alamat tertentu.",
+    "syntax": "http.ListenAndServe(addr string, handler http.Handler) error",
+    "example": "log.Fatal(http.ListenAndServe(\":8080\", mux))"
+  },
+  "http.Get": {
+    "title": "http.Get",
+    "description": "Melakukan request HTTP GET sederhana memakai DefaultClient.",
+    "syntax": "http.Get(url string) (*http.Response, error)",
+    "example": "resp, err := http.Get(\"https://example.com\")\nif err != nil {\n  return err\n}\ndefer resp.Body.Close()"
+  },
+  "http.NewRequestWithContext": {
+    "title": "http.NewRequestWithContext",
+    "description": "Membuat HTTP request dengan context untuk cancellation dan timeout.",
+    "syntax": "http.NewRequestWithContext(ctx, method, url string, body io.Reader)",
+    "example": "req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)"
+  },
+  "json": {
+    "title": "encoding/json",
+    "description": "Paket encoding dan decoding JSON standar Go.",
+    "syntax": "import \"encoding/json\"",
+    "example": "data, err := json.Marshal(value)\nerr = json.Unmarshal(data, &value)"
+  },
+  "json.Marshal": {
+    "title": "json.Marshal",
+    "description": "Mengubah nilai Go menjadi JSON []byte.",
+    "syntax": "json.Marshal(v any) ([]byte, error)",
+    "example": "data, err := json.Marshal(user)"
+  },
+  "json.Unmarshal": {
+    "title": "json.Unmarshal",
+    "description": "Mengubah JSON []byte menjadi nilai Go melalui pointer.",
+    "syntax": "json.Unmarshal(data []byte, v any) error",
+    "example": "var user User\nerr := json.Unmarshal(data, &user)"
+  },
+  "json.NewEncoder": {
+    "title": "json.NewEncoder",
+    "description": "Membuat encoder JSON yang menulis langsung ke io.Writer.",
+    "syntax": "json.NewEncoder(w io.Writer) *json.Encoder",
+    "example": "err := json.NewEncoder(w).Encode(response)"
+  },
+  "json.NewDecoder": {
+    "title": "json.NewDecoder",
+    "description": "Membuat decoder JSON yang membaca langsung dari io.Reader.",
+    "syntax": "json.NewDecoder(r io.Reader) *json.Decoder",
+    "example": "err := json.NewDecoder(r.Body).Decode(&payload)"
+  },
+  "url": {
+    "title": "net/url",
+    "description": "Paket untuk parsing, membangun, dan meng-escape URL.",
+    "syntax": "import \"net/url\"",
+    "example": "u, err := url.Parse(\"https://example.com?q=go\")"
+  },
+  "url.Parse": {
+    "title": "url.Parse",
+    "description": "Parsing string URL menjadi *url.URL.",
+    "syntax": "url.Parse(rawURL string) (*url.URL, error)",
+    "example": "u, err := url.Parse(\"https://example.com/path?q=go\")"
+  },
+  "url.QueryEscape": {
+    "title": "url.QueryEscape",
+    "description": "Meng-escape string agar aman dipakai sebagai query parameter URL.",
+    "syntax": "url.QueryEscape(s string) string",
+    "example": "q := url.QueryEscape(\"go docs indonesia\")"
+  },
+  "regexp": {
+    "title": "regexp",
+    "description": "Paket regular expression standar Go.",
+    "syntax": "import \"regexp\"",
+    "example": "re := regexp.MustCompile(`^[a-z]+$`)\nfmt.Println(re.MatchString(\"go\"))"
+  },
+  "regexp.MustCompile": {
+    "title": "regexp.MustCompile",
+    "description": "Compile regex dan panic jika pattern invalid. Cocok untuk regex konstan saat inisialisasi.",
+    "syntax": "regexp.MustCompile(expr string) *regexp.Regexp",
+    "example": "var slugRE = regexp.MustCompile(`^[a-z0-9-]+$`)"
+  },
+  "sort": {
+    "title": "sort",
+    "description": "Paket sorting lama untuk slice dan interface sort.Interface. Untuk slice generic, paket slices sering lebih nyaman.",
+    "syntax": "import \"sort\"",
+    "example": "sort.Slice(users, func(i, j int) bool {\n  return users[i].Name < users[j].Name\n})"
+  },
+  "sort.Slice": {
+    "title": "sort.Slice",
+    "description": "Mengurutkan slice berdasarkan fungsi less.",
+    "syntax": "sort.Slice(x any, less func(i, j int) bool)",
+    "example": "sort.Slice(items, func(i, j int) bool {\n  return items[i].Price < items[j].Price\n})"
+  },
+  "flag": {
+    "title": "flag",
+    "description": "Paket parsing command-line flag standar Go.",
+    "syntax": "import \"flag\"",
+    "example": "port := flag.String(\"port\", \"8080\", \"server port\")\nflag.Parse()\nfmt.Println(*port)"
+  },
+  "flag.String": {
+    "title": "flag.String",
+    "description": "Mendefinisikan flag string dan mengembalikan pointer ke nilainya.",
+    "syntax": "flag.String(name, value, usage string) *string",
+    "example": "name := flag.String(\"name\", \"\", \"nama user\")"
+  },
+  "flag.Parse": {
+    "title": "flag.Parse",
+    "description": "Memproses command-line flag yang sudah didefinisikan.",
+    "syntax": "flag.Parse()",
+    "example": "flag.Parse()\nfmt.Println(flag.Args())"
+  },
+  "log": {
+    "title": "log",
+    "description": "Paket logging sederhana standar Go. Untuk structured logging, gunakan log/slog.",
+    "syntax": "import \"log\"",
+    "example": "log.Println(\"server started\")\nlog.Fatal(err)"
+  },
+  "log.Println": {
+    "title": "log.Println",
+    "description": "Menulis pesan log dengan newline.",
+    "syntax": "log.Println(v ...any)",
+    "example": "log.Println(\"listening on\", addr)"
+  },
+  "log.Fatal": {
+    "title": "log.Fatal",
+    "description": "Menulis log lalu memanggil os.Exit(1). Deferred function tidak dijalankan.",
+    "syntax": "log.Fatal(v ...any)",
+    "example": "if err != nil {\n  log.Fatal(err)\n}"
+  },
+  "math": {
+    "title": "math",
+    "description": "Paket fungsi matematika untuk float64 dan konstanta seperti Pi.",
+    "syntax": "import \"math\"",
+    "example": "area := math.Pi * r * r"
+  },
+  "math.Sqrt": {
+    "title": "math.Sqrt",
+    "description": "Menghitung akar kuadrat float64.",
+    "syntax": "math.Sqrt(x float64) float64",
+    "example": "d := math.Sqrt(x*x + y*y)"
+  },
+  "math.Round": {
+    "title": "math.Round",
+    "description": "Membulatkan float64 ke integer terdekat dalam bentuk float64.",
+    "syntax": "math.Round(x float64) float64",
+    "example": "rounded := math.Round(3.6)"
+  },
+  "math.Pi": {
+    "title": "math.Pi",
+    "description": "Konstanta pi di paket math.",
+    "syntax": "math.Pi",
+    "example": "keliling := 2 * math.Pi * r"
+  },
+  "path": {
+    "title": "path",
+    "description": "Paket manipulasi path slash-separated, cocok untuk URL path atau fs.FS, bukan path OS.",
+    "syntax": "import \"path\"",
+    "example": "clean := path.Clean(\"/a/../b\")"
+  },
+  "filepath": {
+    "title": "path/filepath",
+    "description": "Paket manipulasi path file sesuai separator sistem operasi.",
+    "syntax": "import \"path/filepath\"",
+    "example": "full := filepath.Join(dir, \"data.json\")"
+  },
+  "filepath.Join": {
+    "title": "filepath.Join",
+    "description": "Menggabungkan elemen path memakai separator OS dan membersihkan hasilnya.",
+    "syntax": "filepath.Join(elem ...string) string",
+    "example": "name := filepath.Join(\"data\", \"users.json\")"
+  },
+  "filepath.WalkDir": {
+    "title": "filepath.WalkDir",
+    "description": "Menelusuri pohon direktori dan memanggil callback untuk tiap entry.",
+    "syntax": "filepath.WalkDir(root string, fn fs.WalkDirFunc) error",
+    "example": "err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {\n  return err\n})"
+  },
+  "reflect": {
+    "title": "reflect",
+    "description": "Paket reflection untuk memeriksa tipe dan nilai saat runtime. Gunakan seperlunya karena lebih kompleks dan kurang type-safe.",
+    "syntax": "import \"reflect\"",
+    "example": "t := reflect.TypeOf(value)\nv := reflect.ValueOf(value)"
+  },
+  "reflect.TypeOf": {
+    "title": "reflect.TypeOf",
+    "description": "Mengembalikan reflect.Type dari nilai runtime.",
+    "syntax": "reflect.TypeOf(i any) reflect.Type",
+    "example": "fmt.Println(reflect.TypeOf(42).Kind())"
+  },
+  "reflect.ValueOf": {
+    "title": "reflect.ValueOf",
+    "description": "Mengembalikan reflect.Value dari nilai runtime.",
+    "syntax": "reflect.ValueOf(i any) reflect.Value",
+    "example": "v := reflect.ValueOf(user)\nfmt.Println(v.Kind())"
+  },
+  "runtime": {
+    "title": "runtime",
+    "description": "Paket untuk berinteraksi dengan runtime Go: goroutine, GC, caller info, OS/ARCH, dan scheduler.",
+    "syntax": "import \"runtime\"",
+    "example": "fmt.Println(runtime.GOOS, runtime.GOARCH)"
+  },
+  "runtime.GOOS": {
+    "title": "runtime.GOOS",
+    "description": "Konstanta target operating system saat program dibuild.",
+    "syntax": "runtime.GOOS",
+    "example": "if runtime.GOOS == \"windows\" {\n  fmt.Println(\"Windows\")\n}"
+  },
+  "runtime.GOARCH": {
+    "title": "runtime.GOARCH",
+    "description": "Konstanta target arsitektur CPU saat program dibuild.",
+    "syntax": "runtime.GOARCH",
+    "example": "fmt.Println(runtime.GOARCH)"
+  },
+  "runtime.GC": {
+    "title": "runtime.GC",
+    "description": "Meminta garbage collection berjalan. Umumnya tidak perlu dipanggil manual.",
+    "syntax": "runtime.GC()",
+    "example": "runtime.GC()"
+  },
+  "testing": {
+    "title": "testing",
+    "description": "Paket standar untuk unit test, benchmark, fuzzing, dan contoh yang bisa diuji.",
+    "syntax": "import \"testing\"",
+    "example": "func TestAdd(t *testing.T) {\n  if Add(1, 2) != 3 {\n    t.Fatal(\"gagal\")\n  }\n}"
+  },
+  "testing.T": {
+    "title": "testing.T",
+    "description": "Tipe yang diberikan ke unit test untuk melaporkan failure, log, cleanup, context, dan helper test.",
+    "syntax": "func TestXxx(t *testing.T)",
+    "example": "func TestAdd(t *testing.T) {\n  t.Helper()\n}"
+  },
+  "testing.B": {
+    "title": "testing.B",
+    "description": "Tipe untuk benchmark. Gunakan b.Loop pada Go 1.24+.",
+    "syntax": "func BenchmarkXxx(b *testing.B)",
+    "example": "func BenchmarkHash(b *testing.B) {\n  for b.Loop() {\n    hash(data)\n  }\n}"
+  },
+  "sync": {
+    "title": "sync",
+    "description": "Paket primitive sinkronisasi seperti Mutex, RWMutex, WaitGroup, Once, Cond, Pool, dan Map.",
+    "syntax": "import \"sync\"",
+    "example": "var wg sync.WaitGroup\nwg.Go(func() { work() })\nwg.Wait()"
+  },
+  "embed": {
+    "title": "embed",
+    "description": "Paket untuk menyertakan file statis ke binary memakai directive //go:embed.",
+    "syntax": "import \"embed\"",
+    "example": "//go:embed templates/*\nvar templates embed.FS"
+  },
+  "fs": {
+    "title": "io/fs",
+    "description": "Paket abstraction filesystem seperti fs.FS, fs.File, fs.DirEntry, dan WalkDir.",
+    "syntax": "import \"io/fs\"",
+    "example": "err := fs.WalkDir(fsys, \".\", fn)"
+  },
+  "fs.FS": {
+    "title": "fs.FS",
+    "description": "Interface filesystem read-only yang dipakai embed.FS, os.DirFS, dan banyak API file modern.",
+    "syntax": "type FS interface { Open(name string) (fs.File, error) }",
+    "example": "func Load(fsys fs.FS, name string) ([]byte, error) {\n  return fs.ReadFile(fsys, name)\n}"
+  },
+  "xml": {
+    "title": "encoding/xml",
+    "description": "Paket encoding dan decoding XML standar Go.",
+    "syntax": "import \"encoding/xml\"",
+    "example": "data, err := xml.Marshal(value)"
+  },
+  "csv": {
+    "title": "encoding/csv",
+    "description": "Paket membaca dan menulis data CSV.",
+    "syntax": "import \"encoding/csv\"",
+    "example": "r := csv.NewReader(file)\nrecords, err := r.ReadAll()"
+  },
+  "base64": {
+    "title": "encoding/base64",
+    "description": "Paket encoding dan decoding Base64.",
+    "syntax": "import \"encoding/base64\"",
+    "example": "encoded := base64.StdEncoding.EncodeToString(data)"
+  },
+  "binary": {
+    "title": "encoding/binary",
+    "description": "Paket encoding dan decoding bilangan biner dengan endian tertentu.",
+    "syntax": "import \"encoding/binary\"",
+    "example": "binary.LittleEndian.PutUint32(buf, n)"
+  },
+  "sql": {
+    "title": "database/sql",
+    "description": "Paket interface database SQL generik. Driver database biasanya di-import terpisah.",
+    "syntax": "import \"database/sql\"",
+    "example": "db, err := sql.Open(\"postgres\", dsn)\nrows, err := db.QueryContext(ctx, query)"
+  },
+  "sql.DB": {
+    "title": "sql.DB",
+    "description": "Pool koneksi database yang aman dipakai concurrent.",
+    "syntax": "*sql.DB",
+    "example": "db, err := sql.Open(driver, dsn)\ndefer db.Close()"
+  },
+  "template": {
+    "title": "html/template",
+    "description": "Paket template HTML yang melakukan escaping otomatis agar lebih aman dari XSS.",
+    "syntax": "import \"html/template\"",
+    "example": "tmpl := template.Must(template.ParseFiles(\"index.html\"))\ntmpl.Execute(w, data)"
+  },
+  "crypto": {
+    "title": "crypto",
+    "description": "Kumpulan package kriptografi standar Go. Gunakan API high-level dan hindari merancang protokol crypto sendiri.",
+    "syntax": "import \"crypto/...\"",
+    "example": "sum := sha256.Sum256(data)"
+  },
+  "sha256": {
+    "title": "crypto/sha256",
+    "description": "Paket hash SHA-224 dan SHA-256.",
+    "syntax": "import \"crypto/sha256\"",
+    "example": "sum := sha256.Sum256([]byte(\"data\"))"
+  },
+  "sha256.Sum256": {
+    "title": "sha256.Sum256",
+    "description": "Menghitung hash SHA-256 dari data.",
+    "syntax": "sha256.Sum256(data []byte) [32]byte",
+    "example": "sum := sha256.Sum256(data)\nfmt.Printf(\"%x\\n\", sum)"
+  },
+  "hmac": {
+    "title": "crypto/hmac",
+    "description": "Paket Hash-based Message Authentication Code untuk autentikasi pesan.",
+    "syntax": "import \"crypto/hmac\"",
+    "example": "mac := hmac.New(sha256.New, key)\nmac.Write(message)\nsig := mac.Sum(nil)"
+  },
+  "tls": {
+    "title": "crypto/tls",
+    "description": "Paket implementasi TLS untuk client dan server.",
+    "syntax": "import \"crypto/tls\"",
+    "example": "cfg := &tls.Config{MinVersion: tls.VersionTLS12}"
+  },
+  "x509": {
+    "title": "crypto/x509",
+    "description": "Paket parsing dan verifikasi sertifikat X.509.",
+    "syntax": "import \"crypto/x509\"",
+    "example": "cert, err := x509.ParseCertificate(der)"
+  },
+  "rand.IntN": {
+    "title": "rand.IntN",
+    "description": "Fungsi math/rand/v2 untuk menghasilkan integer acak dalam rentang [0, n).",
+    "syntax": "rand.IntN(n int) int",
+    "example": "n := rand.IntN(10)"
+  },
+  "rand.Float64": {
+    "title": "rand.Float64",
+    "description": "Fungsi math/rand/v2 untuk menghasilkan float64 acak dalam rentang [0.0, 1.0).",
+    "syntax": "rand.Float64() float64",
+    "example": "p := rand.Float64()"
+  },
+  "rand.NewPCG": {
+    "title": "rand.NewPCG",
+    "description": "Membuat source PCG untuk math/rand/v2 dengan seed eksplisit.",
+    "syntax": "rand.NewPCG(seed1, seed2 uint64)",
+    "example": "r := rand.New(rand.NewPCG(1, 2))"
+  },
+  "rand.Reader": {
+    "title": "crypto/rand.Reader",
+    "description": "Reader random kriptografis. Biasanya dipakai untuk token, key, nonce, atau salt.",
+    "syntax": "rand.Reader",
+    "example": "token := make([]byte, 32)\n_, err := io.ReadFull(rand.Reader, token)"
+  }
+}

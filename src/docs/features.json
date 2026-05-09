@@ -1,0 +1,74 @@
+{
+  "init": {
+    "title": "init",
+    "description": "Fungsi khusus yang dijalankan otomatis saat package diinisialisasi, sebelum main. Tidak menerima parameter dan tidak mengembalikan nilai.",
+    "syntax": "func init() { ... }",
+    "example": "func init() {\n  log.Println(\"package siap\")\n}"
+  },
+  "main": {
+    "title": "main",
+    "description": "Package main dan fungsi main adalah entry point program executable Go.",
+    "syntax": "package main\n\nfunc main() { ... }",
+    "example": "package main\n\nfunc main() {\n  fmt.Println(\"Halo\")\n}"
+  },
+  "closure": {
+    "title": "closure",
+    "description": "Function literal yang menangkap variabel dari scope luar. Di Go 1.22+, variabel loop yang dideklarasikan di for dibuat baru per iterasi.",
+    "syntax": "func() { ... }",
+    "example": "count := 0\ninc := func() int {\n  count++\n  return count\n}"
+  },
+  "variadic": {
+    "title": "variadic function",
+    "description": "Fungsi yang menerima jumlah argumen variabel dengan sintaks ...T.",
+    "syntax": "func nama(values ...T)",
+    "example": "func sum(nums ...int) int {\n  total := 0\n  for _, n := range nums {\n    total += n\n  }\n  return total\n}"
+  },
+  "receiver": {
+    "title": "receiver",
+    "description": "Parameter khusus pada method yang menentukan tipe pemilik method. Receiver bisa value atau pointer.",
+    "syntax": "func (r Receiver) Method()",
+    "example": "func (u *User) Rename(name string) {\n  u.Name = name\n}"
+  },
+  "embedding": {
+    "title": "embedding",
+    "description": "Menyisipkan tipe tanpa nama field eksplisit di struct atau interface untuk komposisi perilaku.",
+    "syntax": "type T struct { EmbeddedType }",
+    "example": "type Handler struct {\n  http.Client\n  Logger *slog.Logger\n}"
+  },
+  "tag": {
+    "title": "struct tag",
+    "description": "Metadata string pada field struct, sering dipakai oleh encoding/json, database mapper, dan validator.",
+    "syntax": "Field Tipe `key:\"value\"`",
+    "example": "type User struct {\n  Name string `json:\"name\"`\n}"
+  },
+  "module": {
+    "title": "Go module",
+    "description": "Unit versioning dan dependency management Go yang didefinisikan oleh go.mod.",
+    "syntax": "module example.com/app",
+    "example": "module example.com/app\n\ngo 1.26"
+  },
+  "workspace": {
+    "title": "Go workspace",
+    "description": "Mode go.work untuk bekerja dengan beberapa module lokal sekaligus.",
+    "syntax": "go work init ./module-a ./module-b",
+    "example": "go 1.26\n\nuse (\n  ./api\n  ./web\n)"
+  },
+  "cgo": {
+    "title": "cgo",
+    "description": "Fitur untuk memanggil kode C dari Go. Berguna untuk interop native, tetapi menambah kompleksitas build dan runtime.",
+    "syntax": "import \"C\"",
+    "example": "/*\n#include <stdlib.h>\n*/\nimport \"C\""
+  },
+  "build": {
+    "title": "build constraints",
+    "description": "Constraint untuk memilih file Go berdasarkan OS, arsitektur, tag, atau kondisi build.",
+    "syntax": "//go:build linux && amd64",
+    "example": "//go:build windows\n\npackage main"
+  },
+  "embed.FS": {
+    "title": "embed.FS",
+    "description": "Filesystem read-only berisi file yang disisipkan ke binary dengan //go:embed.",
+    "syntax": "var files embed.FS",
+    "example": "//go:embed static/*\nvar static embed.FS"
+  }
+}

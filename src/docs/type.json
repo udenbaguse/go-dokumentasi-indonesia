@@ -1,0 +1,194 @@
+{
+  "struct": {
+    "title": "struct",
+    "description": "Kumpulan field yang dikelompokkan bersama. Cara Go untuk merepresentasikan data objek.",
+    "syntax": "type Nama struct { Field Tipe }",
+    "example": "type Orang struct {\n  Nama string\n  Umur int\n}"
+  },
+  "interface": {
+    "title": "interface",
+    "description": "Kumpulan method signature. Digunakan untuk mendefinisikan perilaku tanpa implementasi detail.",
+    "syntax": "type Nama interface { Method() Tipe }",
+    "example": "type Pembayar interface {\n  Bayar(int) bool\n}"
+  },
+  "make": {
+    "title": "make",
+    "description": "Fungsi bawaan untuk inisialisasi slice, map, dan channel (bukan untuk struct/tipe dasar).",
+    "syntax": "make(tipe, ukuran)",
+    "example": "slice := make([]int, 10)\nkamus := make(map[string]string)"
+  },
+  "map": {
+    "title": "map",
+    "description": "Tipe data asosiatif yang menyimpan pasangan key-value (seperti objek/dictionary).",
+    "syntax": "map[tipeKey]tipeValue",
+    "example": "data := map[string]int{\n  \"umur\": 22,\n}"
+  },
+  "array": {
+    "title": "array",
+    "description": "Koleksi berukuran tetap. Panjang array adalah bagian dari tipenya, sehingga [3]int dan [4]int berbeda.",
+    "syntax": "[panjang]Tipe",
+    "example": "var angka [3]int\nangka[0] = 10"
+  },
+  "slice": {
+    "title": "slice",
+    "description": "View dinamis ke array. Slice adalah struktur paling umum untuk daftar data di Go.",
+    "syntax": "[]Tipe",
+    "example": "angka := []int{1, 2, 3}\nangka = append(angka, 4)"
+  },
+  "pointer": {
+    "title": "pointer",
+    "description": "Menyimpan alamat dari nilai lain. Operator & mengambil alamat, sedangkan * membaca atau menulis nilai di alamat itu.",
+    "syntax": "*Tipe",
+    "example": "n := 10\np := &n\n*p = 20"
+  },
+  "method": {
+    "title": "method",
+    "description": "Fungsi dengan receiver. Method membuat perilaku melekat pada tipe tertentu.",
+    "syntax": "func (r Receiver) Nama(...) ...",
+    "example": "type User struct{ Nama string }\n\nfunc (u User) Sapa() string {\n  return \"Halo \" + u.Nama\n}"
+  },
+  "bool": {
+    "title": "bool",
+    "description": "Tipe boolean dengan nilai true atau false.",
+    "syntax": "bool",
+    "example": "aktif := true"
+  },
+  "string": {
+    "title": "string",
+    "description": "Tipe teks immutable yang berisi byte UTF-8. Iterasi dengan range menghasilkan rune.",
+    "syntax": "string",
+    "example": "nama := \"Golang\"\nfor i, r := range nama {\n  fmt.Println(i, r)\n}"
+  },
+  "int": {
+    "title": "int",
+    "description": "Tipe bilangan bulat bertanda dengan ukuran native arsitektur (biasanya 64-bit di mesin modern).",
+    "syntax": "int",
+    "example": "jumlah := 42"
+  },
+  "int8": {
+    "title": "int8",
+    "description": "Bilangan bulat bertanda 8-bit, rentang -128 sampai 127.",
+    "syntax": "int8",
+    "example": "var kecil int8 = 12"
+  },
+  "int16": {
+    "title": "int16",
+    "description": "Bilangan bulat bertanda 16-bit.",
+    "syntax": "int16",
+    "example": "var kode int16 = 32000"
+  },
+  "int32": {
+    "title": "int32",
+    "description": "Bilangan bulat bertanda 32-bit. rune adalah alias untuk int32.",
+    "syntax": "int32",
+    "example": "var r int32 = 'A'"
+  },
+  "int64": {
+    "title": "int64",
+    "description": "Bilangan bulat bertanda 64-bit, sering dipakai untuk timestamp, ID, atau ukuran besar.",
+    "syntax": "int64",
+    "example": "var id int64 = 9000000000"
+  },
+  "uint": {
+    "title": "uint",
+    "description": "Tipe bilangan bulat tidak bertanda dengan ukuran native arsitektur.",
+    "syntax": "uint",
+    "example": "var hitung uint = 10"
+  },
+  "uint8": {
+    "title": "uint8",
+    "description": "Bilangan bulat tidak bertanda 8-bit. byte adalah alias untuk uint8.",
+    "syntax": "uint8",
+    "example": "var b uint8 = 255"
+  },
+  "uint16": {
+    "title": "uint16",
+    "description": "Bilangan bulat tidak bertanda 16-bit.",
+    "syntax": "uint16",
+    "example": "var port uint16 = 8080"
+  },
+  "uint32": {
+    "title": "uint32",
+    "description": "Bilangan bulat tidak bertanda 32-bit.",
+    "syntax": "uint32",
+    "example": "var mask uint32 = 0xff00ff00"
+  },
+  "uint64": {
+    "title": "uint64",
+    "description": "Bilangan bulat tidak bertanda 64-bit.",
+    "syntax": "uint64",
+    "example": "var total uint64 = 1 << 40"
+  },
+  "uintptr": {
+    "title": "uintptr",
+    "description": "Bilangan bulat yang cukup besar untuk menyimpan bit alamat pointer. Umumnya hanya dipakai bersama unsafe.",
+    "syntax": "uintptr",
+    "example": "addr := uintptr(unsafe.Pointer(p))"
+  },
+  "byte": {
+    "title": "byte",
+    "description": "Alias untuk uint8. Dipakai untuk data biner atau byte string.",
+    "syntax": "byte",
+    "example": "data := []byte(\"halo\")"
+  },
+  "rune": {
+    "title": "rune",
+    "description": "Alias untuk int32 yang merepresentasikan satu code point Unicode.",
+    "syntax": "rune",
+    "example": "var huruf rune = 'g'"
+  },
+  "float32": {
+    "title": "float32",
+    "description": "Bilangan pecahan floating-point 32-bit.",
+    "syntax": "float32",
+    "example": "var suhu float32 = 36.5"
+  },
+  "float64": {
+    "title": "float64",
+    "description": "Bilangan pecahan floating-point 64-bit. Literal pecahan default biasanya bertipe float64.",
+    "syntax": "float64",
+    "example": "pi := 3.14159"
+  },
+  "complex64": {
+    "title": "complex64",
+    "description": "Bilangan kompleks dengan bagian real dan imajiner float32.",
+    "syntax": "complex64",
+    "example": "var z complex64 = 1 + 2i"
+  },
+  "complex128": {
+    "title": "complex128",
+    "description": "Bilangan kompleks dengan bagian real dan imajiner float64.",
+    "syntax": "complex128",
+    "example": "z := complex(2.0, 3.0)"
+  },
+  "error": {
+    "title": "error",
+    "description": "Interface bawaan untuk nilai error. Fungsi idiomatis Go biasanya mengembalikan error sebagai nilai terakhir.",
+    "syntax": "type error interface { Error() string }",
+    "example": "if err != nil {\n  return err\n}"
+  },
+  "nil": {
+    "title": "nil",
+    "description": "Zero value untuk pointer, slice, map, channel, function, dan interface. nil bukan nilai untuk tipe numerik atau string.",
+    "syntax": "nil",
+    "example": "var err error = nil\nvar items []int = nil"
+  },
+  "iota": {
+    "title": "iota",
+    "description": "Identifier bawaan untuk membuat konstanta berurutan di dalam blok const.",
+    "syntax": "const ( A = iota; B; C )",
+    "example": "const (\n  Merah = iota\n  Hijau\n  Biru\n)"
+  },
+  "true": {
+    "title": "true",
+    "description": "Konstanta boolean benar.",
+    "syntax": "true",
+    "example": "aktif := true"
+  },
+  "false": {
+    "title": "false",
+    "description": "Konstanta boolean salah.",
+    "syntax": "false",
+    "example": "selesai := false"
+  }
+}

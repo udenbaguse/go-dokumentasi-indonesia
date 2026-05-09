@@ -17,12 +17,12 @@ function createMarkdown(doc) {
 
   if (doc.syntax) {
     markdown.appendMarkdown("### Syntax\n");
-    markdown.appendCodeblock(doc.syntax, "js");
+    markdown.appendCodeblock(doc.syntax, "go");
   }
 
   if (doc.example) {
     markdown.appendMarkdown("### Contoh\n");
-    markdown.appendCodeblock(doc.example, "js");
+    markdown.appendCodeblock(doc.example, "go");
   }
 
   return markdown;
@@ -87,11 +87,47 @@ function isInsideStringOrComment(document, position) {
   return Boolean(state);
 }
 
+function isIdentifierPart(char) {
+  return Boolean(char && /[A-Za-z0-9_]/.test(char));
+}
+
+/**
+ * Ambil selector di sisi kiri kata, misalnya Println -> fmt.Println.
+ *
+ * @param {import('vscode').TextDocument} document
+ * @param {import('vscode').Range} range
+ */
+function getSelectorAtRange(document, range) {
+  const line = document.lineAt(range.start.line).text;
+  let start = range.start.character;
+
+  while (start > 1 && line[start - 1] === ".") {
+    let identifierStart = start - 1;
+
+    while (identifierStart > 0 && isIdentifierPart(line[identifierStart - 1])) {
+      identifierStart--;
+    }
+
+    if (identifierStart === start - 1) break;
+    start = identifierStart;
+  }
+
+  if (start === range.start.character) return null;
+
+  return {
+    text: line.slice(start, range.end.character),
+    range: new vscode.Range(
+      new vscode.Position(range.start.line, start),
+      range.end,
+    ),
+  };
+}
+
 /**
  * Buat hover provider reusable.
  *
  * Data hover dibaca dari file JSON di folder src/docs.
- * Key JSON harus sama dengan kata yang akan diberi hover.
+ * Key JSON bisa berupa kata tunggal atau selector seperti fmt.Println.
  *
  * @param {{ languages?: string[] }} [options]
  */
@@ -106,11 +142,13 @@ function createHoverProvider(options = {}) {
       if (isInsideStringOrComment(document, range.start)) return null;
 
       const word = document.getText(range);
-      const doc = docs[word];
+      const selector = getSelectorAtRange(document, range);
+      const doc = selector && docs[selector.text] ? docs[selector.text] : docs[word];
+      const hoverRange = selector && docs[selector.text] ? selector.range : range;
 
       if (!doc) return null;
 
-      return new vscode.Hover(createMarkdown(doc), range);
+      return new vscode.Hover(createMarkdown(doc), hoverRange);
     },
   });
 }
