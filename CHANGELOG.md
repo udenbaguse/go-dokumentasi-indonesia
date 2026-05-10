@@ -2,7 +2,7 @@
 
 Semua perubahan yang signifikan pada project ini akan didokumentasikan dalam file ini.
 
-## [0.1.1] - 2024
+## [0.1.1] - 2026-05-10
 
 ### Ditambahkan
 - penjelasan rentang interval pada tipe data number.
@@ -12,7 +12,7 @@ Semua perubahan yang signifikan pada project ini akan didokumentasikan dalam fil
 - icon.png dikonversi menjadi icon.ico untuk ukuran yang lebih kecil dan kompatibilitas yang lebih baik dengan VS Code.
 - minify pada kode utama untuk mengurangi ukuran file, meningkatkan performa extension, & keamanan kode.
 
-## [0.1.0] - 2024
+## [0.1.0] - 2026-05-09
 
 ### Ditambahkan
 - Extension VS Code untuk dokumentasi Go dalam bahasa Indonesia
