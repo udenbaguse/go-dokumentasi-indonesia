@@ -2,7 +2,7 @@
 
 Semua perubahan yang signifikan pada project ini akan didokumentasikan dalam file ini.
 
-## [0.1.1] - 2026-05-9
+## [0.1.1] - 2026-05-10
 ### Ditambahkan
 - Interval pada tipedata number
 
