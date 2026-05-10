@@ -2,14 +2,18 @@
 
 Semua perubahan yang signifikan pada project ini akan didokumentasikan dalam file ini.
 
-## [0.1.1] - 2026-05-10
+## [0.1.1] - 2024
+
 ### Ditambahkan
-- Interval pada tipedata number
+- penjelasan rentang interval pada tipe data number.
+- `CONTRIBUTING.md` - panduan kontribusi
 
 ### Diubah
-- icon.png dikonversi ke icon.ico
+- icon.png dikonversi menjadi icon.ico untuk ukuran yang lebih kecil dan kompatibilitas yang lebih baik dengan VS Code.
+- minify pada kode utama untuk mengurangi ukuran file, meningkatkan performa extension, & keamanan kode.
 
-## [0.1.0] - 2026-05-9
+## [0.1.0] - 2024
+
 ### Ditambahkan
 - Extension VS Code untuk dokumentasi Go dalam bahasa Indonesia
 - Hover documentation untuk keyword Go seperti `package`, `import`, `func`, `defer`, `go`, `select`, `range`, `struct`, `interface`, dan generics

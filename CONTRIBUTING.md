@@ -1,16 +1,21 @@
 # Kontribusi
 
-Terima kasih untuk minatmu untuk berkontribusi pada Go Dokumentasi Indonesia!
+Terima kasih atas minatmu untuk berkontribusi pada project Go Dokumentasi Indonesia!
+
+## Panduan Awal Kontribusi
+
+1. Buka repository ini di GitHub.
+2. Buat issues.
+3. Tunggu pemilik repo invite kamu untuk menjadi kolaborator & setelah diinvite, kamu bisa accept invite tersebut.
 
 ## Cara Berkontribusi
 
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b fitur/nama-fitur`)
-3. Lakukan perubahan
-4. Pastikan `npm run check` berhasil
-5. Commit perubahan (`git commit -m 'Menambahkan fitur X'`)
-6. Push ke branch (`git push origin fitur/nama-fitur`)
-7. Buat Pull Request
+1. Clone repository ini
+2. Buat branch baru (`nama-kolaborator`)
+3. Lakukan perubahan pada file yang ada di path `src/docs/` untuk menambah atau memperbaiki dokumentasi.
+4. Commit (commit message ga harus bahasa inggris yang penting bisa dibaca).
+6. Push.
+7. Pull Request.
 
 ## Menambah Dokumentasi
 

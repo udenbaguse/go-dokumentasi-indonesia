@@ -2,8 +2,13 @@ const fs = require("fs");
 const path = require("path");
 
 function loadDocs() {
-  const docsDir = path.join(__dirname, "docs");
+  const docsPath = path.join(__dirname, "docs", "docs.json");
 
+  if (fs.existsSync(docsPath)) {
+    return JSON.parse(fs.readFileSync(docsPath, "utf8"));
+  }
+
+  const docsDir = path.join(__dirname, "docs");
   if (!fs.existsSync(docsDir)) {
     return {};
   }
@@ -23,4 +28,5 @@ function loadDocs() {
   return allDocs;
 }
 
+module.exports = loadDocs;
 module.exports = loadDocs;

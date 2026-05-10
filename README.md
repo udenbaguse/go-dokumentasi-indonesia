@@ -39,7 +39,7 @@ users := slices.Collect(maps.Values(userMap))
 
 ## Yang Didukung
 
-Extension ini memuat dokumentasi dari folder `src/docs`, termasuk:
+Extension ini memuat dokumentasi dari file `src/docs/docs.json` (atau membagi ke file terpisah selama development), termasuk:
 
 - `builtins.json`: built-in function Go.
 - `keywords.json`: keyword bahasa Go.
@@ -53,6 +53,6 @@ Extension ini memuat dokumentasi dari folder `src/docs`, termasuk:
 
 ## Kontribusi
 
-Kontribusi sangat terbuka. Kamu bisa membantu menambah entry dokumentasi, memperbaiki contoh kode, memperhalus bahasa Indonesia, atau menambahkan coverage untuk package standar Go yang belum ada.
+Kontribusi sangat terbuka. Kamu bisa membantu menambah entry dokumentasi, memperbaiki contoh kode, memperhalus bahasa Indonesia, atau menambahkan coverage untuk package standar Go yang belum ada. Lihat [CONTRIBUTING.md](CONTRIBUTING.md) untuk panduan lengkap.
 
 Jika extension ini membantumu belajar atau membaca kode Go dengan lebih nyaman, beri bintang repository ini dan bagikan ke teman yang sedang belajar Go.
