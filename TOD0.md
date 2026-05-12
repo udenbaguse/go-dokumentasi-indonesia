@@ -1,0 +1,15 @@
+- [x] Implement array hover:
+  - [ ] Detect declaration `var nama [N] T`
+  - [ ] Detect access `nama[index]` with index literal
+  - [ ] Hover `nama` -> show `[N]` panjang & tipe `T`
+  - [ ] Hover `nama[index]` -> if index < N show value; else show out-of-bounds message
+  - [ ] Parse value dari:
+    - [ ] assignment `nama[i] = <literal/teks>` (index literal)
+    - [ ] initializer literal array/slice: `nama := [N]T{ ... }` (opsional sesuai implementasi)
+- [ ] Add caching to avoid expensive parsing on every hover
+- [ ] Validate anti-hover inside string/comment remains intact
+- [ ] Manual testing checklist (yang diminta):
+  - [ ] hover `namaVariabel` muncul panjang & tipe
+- [ ] hover `namaVariabel[0]` muncul nilai
+- [x] hover `namaVariabel[>=N]` muncul pesan batas
+- [ ] untuk deklarasi multiline `var ( namaArray[index] T )`, index tidak menampilkan popup index/value, dan hover `namaArray` tetap menampilkan panjang & tipe

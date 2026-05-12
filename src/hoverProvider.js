@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const loadDocs = require("./docsLoader");
+const { getArrayHover } = require("./arrayHover");
 
 const DEFAULT_LANGUAGES = ["go"];
 const docs = loadDocs();
@@ -41,7 +42,9 @@ function isInsideStringOrComment(document, position) {
   let state = null;
 
   for (let index = 0; index < textBeforePosition.length; index++) {
+    /** @type {string} */
     const char = textBeforePosition[index];
+    /** @type {string | undefined} */
     const next = textBeforePosition[index + 1];
 
     if (state === "lineComment") {
@@ -87,6 +90,9 @@ function isInsideStringOrComment(document, position) {
   return Boolean(state);
 }
 
+/**
+ * @param {string} char
+ */
 function isIdentifierPart(char) {
   return Boolean(char && /[A-Za-z0-9_]/.test(char));
 }
@@ -134,6 +140,9 @@ function getSelectorAtRange(document, range) {
 function createHoverProvider(options = {}) {
   const languages = options.languages || DEFAULT_LANGUAGES;
 
+  // Cache per dokumen untuk analisa array (pagar hover tetap ringan)
+  const arrayCache = new Map();
+
   return vscode.languages.registerHoverProvider(languages, {
     provideHover(document, position) {
       const range = document.getWordRangeAtPosition(position);
@@ -141,10 +150,19 @@ function createHoverProvider(options = {}) {
 
       if (isInsideStringOrComment(document, range.start)) return null;
 
+      // 1) Array hover (prioritas lebih tinggi dari docs)
+      const arrayHover = getArrayHover(document, position, arrayCache);
+      if (arrayHover) {
+        return new vscode.Hover(arrayHover.markdown, arrayHover.hoverRange);
+      }
+
+      // 2) Existing docs hover
       const word = document.getText(range);
       const selector = getSelectorAtRange(document, range);
-      const doc = selector && docs[selector.text] ? docs[selector.text] : docs[word];
-      const hoverRange = selector && docs[selector.text] ? selector.range : range;
+      const doc =
+        selector && docs[selector.text] ? docs[selector.text] : docs[word];
+      const hoverRange =
+        selector && docs[selector.text] ? selector.range : range;
 
       if (!doc) return null;
 
