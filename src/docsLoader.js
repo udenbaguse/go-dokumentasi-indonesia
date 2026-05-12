@@ -29,4 +29,3 @@ function loadDocs() {
 }
 
 module.exports = loadDocs;
-module.exports = loadDocs;
