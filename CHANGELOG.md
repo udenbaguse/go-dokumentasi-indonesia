@@ -2,6 +2,9 @@
 
 Semua perubahan yang signifikan pada project ini akan didokumentasikan dalam file ini.
 
+array[index] dihover muncul popup nilai sesuai value di array(tidak menyimpan data di cache memory supaya ketika value diganti maka popup nilai menampilkan nilai terbaru)
+
+
 ## [0.1.1] - 2026-05-10
 
 ### Ditambahkan

@@ -140,9 +140,6 @@ function getSelectorAtRange(document, range) {
 function createHoverProvider(options = {}) {
   const languages = options.languages || DEFAULT_LANGUAGES;
 
-  // Cache per dokumen untuk analisa array (pagar hover tetap ringan)
-  const arrayCache = new Map();
-
   return vscode.languages.registerHoverProvider(languages, {
     provideHover(document, position) {
       const range = document.getWordRangeAtPosition(position);
@@ -150,8 +147,8 @@ function createHoverProvider(options = {}) {
 
       if (isInsideStringOrComment(document, range.start)) return null;
 
-      // 1) Array hover (prioritas lebih tinggi dari docs)
-      const arrayHover = getArrayHover(document, position, arrayCache);
+      // 1) Array hover
+      const arrayHover = getArrayHover(document, position);
       if (arrayHover) {
         return new vscode.Hover(arrayHover.markdown, arrayHover.hoverRange);
       }

@@ -20,7 +20,7 @@
   "activationEvents": [
     "onLanguage:go"
   ],
-  "main": "./src/extension.js",
+  "main": "./out/extension.js",
   "contributes": {},
   "scripts": {
     "check": "node --check src/extension.js && node --check src/hoverProvider.js && node --check src/docsLoader.js",

@@ -164,22 +164,13 @@ function matchArrayAccessAtPosition(document, position) {
  *
  * @param {import('vscode').TextDocument} document
  * @param {import('vscode').Position} position
- * @param {Map<string, any>} cache
  * @returns {any|null}
  */
-function getArrayHover(document, position, cache) {
-  const docKey = String(document.uri);
-
-  if (!cache.has(docKey)) {
-    const text = document.getText();
-
-    cache.set(docKey, {
-      declarations: extractArrayDeclarations(text),
-      assignments: extractArrayAssignments(text),
-    });
-  }
-
-  const { declarations, assignments } = cache.get(docKey);
+function getArrayHover(document, position) {
+  // Disable cache to ensure values update immediately after document edits.
+  const text = document.getText();
+  const declarations = extractArrayDeclarations(text);
+  const assignments = extractArrayAssignments(text);
 
   // 1) Prioritas: deteksi akses array dari teks baris + posisi cursor
   const arrayAccess = matchArrayAccessAtPosition(document, position);
@@ -210,8 +201,7 @@ function getArrayHover(document, position, cache) {
 
     const markdown = new vscode.MarkdownString();
     markdown.appendMarkdown(`## ${arrayAccess.name}[${index}]\n\n`);
-    markdown.appendMarkdown(`- Panjang array: **${length}**\n`);
-    markdown.appendMarkdown(`- Tipe data: **${elementType.trim()}**\n`);
+    // UX: saat hover [index] hanya tampilkan nilai, bukan panjang & tipe
     markdown.appendMarkdown(
       `- Nilai: **${value !== null ? value : "tidak diketahui"}**\n`,
     );
